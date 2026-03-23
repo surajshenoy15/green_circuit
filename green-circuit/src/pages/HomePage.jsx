@@ -4,7 +4,7 @@ import {
   Menu, X, Users, Download, Trophy, CalendarDays, MapPin,
   Footprints, Bike, PartyPopper, ArrowRight, Clock, TreePine, Award,
   Star, Quote, Check, Medal, Crown, Gem, ChevronDown, Mail, Phone,
-  ArrowUp, Zap, Timer, Flame, Heart, Sparkles
+  ArrowUp, Zap, Timer, Flame, Heart, Sparkles, ImageIcon
 } from 'lucide-react';
 import { W, Stagger, StaggerItem, Fade, Head } from '../components/shared';
 
@@ -23,7 +23,7 @@ function Marquee({ items, dir = 'l', bg = 'bg-g700', speed = '25s' }) {
 }
 
 /* ═══ NAVBAR ═══ */
-const NAV = [['Events', '#events'], ['Impact', '#impact'], ['Sponsors', '#sponsors'], ['FAQ', '#faq']];
+const NAV = [['Events', '#events'], ['Impact', '#impact'], ['Sponsors', '#sponsors'], ['Past Events', '#past-events'], ['FAQ', '#faq']];
 
 function Navbar() {
   const [s, setS] = useState(false);
@@ -117,6 +117,7 @@ function Navbar() {
     </nav>
   );
 }
+
 /* ═══ HERO ═══ */
 function useCD(iso) {
   const tgt = useMemo(() => new Date(iso).getTime(), [iso]);
@@ -139,7 +140,6 @@ function Dig({ v, l }) {
   );
 }
 
-
 function Hero() {
   const cd = useCD('2026-06-01T06:00:00+05:30');
   const { scrollYProgress } = useScroll();
@@ -151,19 +151,12 @@ function Hero() {
     <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-g950 noise">
       <motion.div style={{ y }} className="absolute inset-0">
         <video
-  autoPlay
-  muted
-  loop
-  playsInline
-  preload="auto"
-  className="w-full h-full object-cover opacity-25 zoom-bg"
-  poster="https://images.unsplash.com/photo-1596727147705-61a532a659bd?w=1920&q=80"
->
-  <source
-    src="https://www.w3schools.com/howto/rain.mp4"
-    type="video/mp4"
-  />
-</video>
+          autoPlay muted loop playsInline preload="auto"
+          className="w-full h-full object-cover opacity-25 zoom-bg"
+          poster="https://images.unsplash.com/photo-1596727147705-61a532a659bd?w=1920&q=80"
+        >
+          <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
+        </video>
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-b from-g950/50 via-transparent to-g950" />
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-g950 to-transparent" />
@@ -315,20 +308,228 @@ const SP = [
 
 function Sponsors() {
   return (
-    <section id="sponsors" className="bg-g950 py-16 sm:py-20 relative overflow-hidden noise">
+    <section id="sponsors" className="bg-g900 py-16 sm:py-20 relative overflow-hidden noise">
       <div className="absolute top-0 left-1/3 w-60 h-60 bg-g600/8 rounded-full blur-[100px]" />
       <div className={`${W} relative z-10`}>
-        <Fade><Head ey="Past Supporters" ti="OUR SPONSORS" dark /></Fade>
-        <Stagger className="grid grid-cols-3 sm:grid-cols-6 gap-3 max-w-2xl mx-auto">
-          {SP.map((s) => (
-            <StaggerItem key={s.n}>
-              <div className="glass rounded-xl p-4 text-center hover:bg-white/[0.08] transition-all duration-300 cursor-pointer group">
+        <Fade>
+          <Head ey="Past Supporters" ti="OUR SPONSORS" dark />
+        </Fade>
+        <div className="overflow-hidden mt-8">
+          <div className="mq-l flex w-max gap-4" style={{ animationDuration: '22s' }}>
+            {[...SP, ...SP, ...SP].map((s, i) => (
+              <div
+                key={`${s.n}-${i}`}
+                className="glass rounded-xl p-4 text-center hover:bg-white/[0.08] transition-all duration-300 cursor-pointer group min-w-[130px] sm:min-w-[150px]"
+              >
                 <span className="text-2xl block mb-2 group-hover:scale-125 transition-transform duration-300">{s.i}</span>
-                <p className="text-white/70 text-[9px] font-bold leading-tight">{s.n}</p>
+                <p className="text-white/70 text-[9px] sm:text-[10px] font-bold leading-tight">{s.n}</p>
               </div>
-            </StaggerItem>
-          ))}
-        </Stagger>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══ PAST EVENTS ═══ */
+const PAST_EVENTS_LIST = [
+  {
+    id: 1,
+    tag: 'GC · 1st June 2024',
+    title: 'Cycle Street',
+    desc: 'Over 1,200 cyclists took to the streets of Bengaluru in our flagship Cycle Street edition, raising awareness for urban mobility and clean air.',
+    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
+    participants: '1,200+',
+    edition: '5th Edition',
+  },
+  {
+    id: 2,
+    tag: 'GC · 1st June 2024',
+    title: 'Eco Miles',
+    desc: 'Runners crossed the finish line for the planet — 5,000 participants completed the eco-themed marathon across Cubbon Park and MG Road.',
+    img: 'https://images.unsplash.com/photo-1594882645126-14ac19a3b611?w=400&q=80',
+    participants: '5,000+',
+    edition: '4th Edition',
+  },
+  {
+    id: 3,
+    tag: 'GC · 3rd June 2023',
+    title: 'Green Dash',
+    desc: 'A high-energy fun run that brought together families, students, and fitness enthusiasts for a greener Bengaluru.',
+    img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80',
+    participants: '3,500+',
+    edition: '3rd Edition',
+  },
+];
+
+const FEATURED_PAST = {
+  date: 'Debits – 03 June 2023',
+  headline: '"Introducing GreenCircuit — Featuring Our Exciting Walkathon And The Flagship 5th Edition Of The Cycle Street Event!"',
+  img: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=900&q=80',
+  participants: '8,700+',
+  raised: '₹4.2L',
+};
+
+function PastEvents() {
+  const [active, setActive] = useState(PAST_EVENTS_LIST[0]);
+
+  return (
+    <section id="past-events" className="bg-white py-16 sm:py-24 relative overflow-hidden">
+      {/* subtle top divider */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-g300/40 to-transparent" />
+
+      <div className={W}>
+        <Fade>
+          <Head ey="A Look Back" ti="PAST EVENTS" />
+        </Fade>
+
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-6 items-stretch">
+
+          {/* ── LEFT: event list ── */}
+          <div className="flex flex-col gap-4">
+            {PAST_EVENTS_LIST.map((ev, i) => (
+              <motion.div
+                key={ev.id}
+                initial={{ opacity: 0, x: -18 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.45, ease: [.25,.1,.25,1] }}
+                onClick={() => setActive(ev)}
+                className={`group flex gap-4 p-4 rounded-2xl border cursor-pointer transition-all duration-300 ${
+                  active.id === ev.id
+                    ? 'border-g300 bg-g50 shadow-md shadow-g200/30'
+                    : 'border-gray-100 bg-white hover:border-g200 hover:bg-g50/50 hover:shadow-sm'
+                }`}
+              >
+                {/* thumbnail */}
+                <div className="w-24 h-20 sm:w-28 sm:h-[84px] rounded-xl overflow-hidden flex-shrink-0 bg-gray-100">
+                  <img
+                    src={ev.img}
+                    alt={ev.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* text */}
+                <div className="flex flex-col justify-center min-w-0">
+                  <p className="text-[9px] font-bold text-g600 tracking-wider mb-1">{ev.tag}</p>
+                  <h4 className="font-head text-lg text-gray-900 tracking-wide leading-tight mb-1">{ev.title}</h4>
+                  <p className="text-gray-400 text-[10px] leading-relaxed line-clamp-2">{ev.desc}</p>
+                  <div className="flex items-center gap-3 mt-2">
+                    <span className="flex items-center gap-1 text-[9px] text-g700 font-bold">
+                      <Users size={9} /> {ev.participants}
+                    </span>
+                    <span className="text-[9px] text-gray-300">·</span>
+                    <span className="text-[9px] text-gray-400 font-medium">{ev.edition}</span>
+                  </div>
+                </div>
+
+                {/* active indicator */}
+                <div className={`ml-auto flex-shrink-0 self-center w-1.5 h-10 rounded-full transition-all duration-300 ${
+                  active.id === ev.id ? 'bg-g500' : 'bg-transparent'
+                }`} />
+              </motion.div>
+            ))}
+
+            {/* view all link */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.35 }}
+              className="mt-1"
+            >
+              <a
+                href="#"
+                className="inline-flex items-center gap-1.5 text-g700 text-[11px] font-bold hover:text-g600 transition group"
+              >
+                View all past events
+                <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+            </motion.div>
+          </div>
+
+          {/* ── RIGHT: featured panel ── */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active.id}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.38, ease: [.25,.1,.25,1] }}
+              className="relative rounded-2xl overflow-hidden bg-g950 flex flex-col min-h-[420px]"
+            >
+              {/* background image with overlay */}
+              <div className="absolute inset-0">
+                <img
+                  src={active.img}
+                  alt={active.title}
+                  className="w-full h-full object-cover opacity-30"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-g950 via-g950/80 to-g950/40" />
+                <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(74,222,128,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.03) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
+              </div>
+
+              {/* GC logo badge */}
+              <div className="relative z-10 p-6 pb-0 flex items-start justify-between">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-g400/20 bg-g400/5 backdrop-blur-sm">
+                  <span className="font-head text-[11px] tracking-[0.25em] text-white">GREEN CIRCUIT</span>
+                </div>
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-g400" />
+                  <span className="text-[9px] text-white/60 font-bold tracking-wider">PAST EVENT</span>
+                </div>
+              </div>
+
+              {/* content */}
+              <div className="relative z-10 flex flex-col flex-1 justify-end p-6">
+                <p className="text-g400 text-[10px] font-bold tracking-wider mb-3">
+                  {/* reuse the active event tag */}
+                  {active.tag.replace('GC · ', 'GC — ')}
+                </p>
+
+                <h3 className="font-head text-[clamp(1.5rem,3vw,2.2rem)] text-white leading-[1.1] tracking-wide mb-5">
+                  "Celebrating <span className="text-g400">{active.title}</span> — {active.edition} of the Green Circuit event!"
+                </h3>
+
+                {/* stats row */}
+                <div className="flex flex-wrap gap-3 mb-5">
+                  <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.06] border border-white/10 backdrop-blur-sm">
+                    <Users size={13} className="text-g400" />
+                    <div>
+                      <p className="text-[8px] text-white/30 font-bold tracking-wider">PARTICIPANTS</p>
+                      <p className="text-white text-[13px] font-bold leading-none">{active.participants}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.06] border border-white/10 backdrop-blur-sm">
+                    <TreePine size={13} className="text-g400" />
+                    <div>
+                      <p className="text-[8px] text-white/30 font-bold tracking-wider">EDITION</p>
+                      <p className="text-white text-[13px] font-bold leading-none">{active.edition}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.06] border border-white/10 backdrop-blur-sm">
+                    <Trophy size={13} className="text-yellow-400" />
+                    <div>
+                      <p className="text-[8px] text-white/30 font-bold tracking-wider">PRIZES GIVEN</p>
+                      <p className="text-white text-[13px] font-bold leading-none">₹1.5L+</p>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-white/40 text-[11px] leading-relaxed mb-5 max-w-sm">{active.desc}</p>
+
+                <a
+                  href="#"
+                  className="self-start inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-g500 text-white text-[11px] font-bold hover:bg-g400 transition-all shadow-lg shadow-g500/25 group"
+                >
+                  View Highlights <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );
@@ -358,101 +559,63 @@ const TE = [
 
 function Testimonials() {
   return (
-    <section className="bg-g900 py-16 sm:py-20 relative overflow-hidden noise">
+    <section className="bg-g950 py-16 sm:py-20 relative overflow-hidden noise">
       <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-g500/8 rounded-full blur-[80px]" />
-
       <div className={`${W} relative z-10`}>
         <Fade>
           <Head ey="Wall of Love" ti="TESTIMONIALS" dark />
         </Fade>
-
-        {/* Featured video testimonial */}
         <Fade d={0.08}>
           <div className="max-w-4xl mx-auto mb-8">
             <div className="glass rounded-2xl overflow-hidden border border-white/10 hover:bg-white/[0.08] transition-all duration-300">
               <div className="grid grid-cols-1 md:grid-cols-[1.2fr_.8fr]">
                 <div className="relative min-h-[260px] md:min-h-[320px] bg-black">
                   <video
-                    controls
-                    preload="metadata"
+                    controls preload="metadata"
                     poster="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=1200&q=80"
                     className="w-full h-full object-cover"
                   >
                     <source src="/videos/testimonial-feedback.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
                   </video>
-
-                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/50 backdrop-blur text-white text-[10px] font-bold tracking-wider">
-                    VIDEO FEEDBACK
-                  </div>
+                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/50 backdrop-blur text-white text-[10px] font-bold tracking-wider">VIDEO FEEDBACK</div>
                 </div>
-
                 <div className="p-5 sm:p-6 flex flex-col justify-center">
                   <div className="flex items-center gap-2 mb-3">
                     <Quote className="w-5 h-5 text-g400/30" />
-                    <span className="text-g400 text-[10px] font-bold tracking-[0.2em] uppercase">
-                      Featured Story
-                    </span>
+                    <span className="text-g400 text-[10px] font-bold tracking-[0.2em] uppercase">Featured Story</span>
                   </div>
-
-                  <h3 className="font-head text-2xl text-white tracking-wide mb-2">
-                    Hear it from our participants
-                  </h3>
-
-                  <p className="text-white/50 text-sm leading-relaxed mb-5">
-                    Watch a real participant share their Green Circuit experience, the event atmosphere,
-                    and how the run inspired them to support a greener tomorrow.
-                  </p>
-
+                  <h3 className="font-head text-2xl text-white tracking-wide mb-2">Hear it from our participants</h3>
+                  <p className="text-white/50 text-sm leading-relaxed mb-5">Watch a real participant share their Green Circuit experience, the event atmosphere, and how the run inspired them to support a greener tomorrow.</p>
                   <div className="flex items-center gap-3">
-                    <img
-                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80"
-                      alt="Featured participant"
-                      className="w-11 h-11 rounded-full object-cover ring-2 ring-g400/20"
-                    />
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&q=80" alt="Featured participant" className="w-11 h-11 rounded-full object-cover ring-2 ring-g400/20" />
                     <div>
                       <p className="text-white text-sm font-bold">Priya S.</p>
                       <p className="text-white/30 text-[10px]">Runner · Featured video feedback</p>
                     </div>
                   </div>
-
                   <div className="flex gap-0.5 mt-4">
-                    {[...Array(5)].map((_, j) => (
-                      <Star key={j} size={10} className="text-yellow-400 fill-yellow-400" />
-                    ))}
+                    {[...Array(5)].map((_, j) => <Star key={j} size={10} className="text-yellow-400 fill-yellow-400" />)}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </Fade>
-
-        {/* Regular testimonial cards */}
         <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
           {TE.map((t) => (
             <StaggerItem key={t.n}>
               <div className="glass rounded-xl p-5 hover:bg-white/[0.08] transition-all duration-300 h-full">
                 <Quote className="w-5 h-5 text-g400/20 mb-3" />
-                <p className="text-white/50 text-[11px] leading-relaxed mb-4">
-                  "{t.t}"
-                </p>
-
+                <p className="text-white/50 text-[11px] leading-relaxed mb-4">"{t.t}"</p>
                 <div className="flex items-center gap-2">
-                  <img
-                    src={t.img}
-                    alt={t.n}
-                    className="w-8 h-8 rounded-full object-cover ring-2 ring-g400/20"
-                  />
+                  <img src={t.img} alt={t.n} className="w-8 h-8 rounded-full object-cover ring-2 ring-g400/20" />
                   <div>
                     <p className="text-white text-[11px] font-bold">{t.n}</p>
                     <p className="text-white/30 text-[8px]">{t.r}</p>
                   </div>
                 </div>
-
                 <div className="flex gap-0.5 mt-2">
-                  {[...Array(5)].map((_, j) => (
-                    <Star key={j} size={9} className="text-yellow-400 fill-yellow-400" />
-                  ))}
+                  {[...Array(5)].map((_, j) => <Star key={j} size={9} className="text-yellow-400 fill-yellow-400" />)}
                 </div>
               </div>
             </StaggerItem>
@@ -462,6 +625,7 @@ function Testimonials() {
     </section>
   );
 }
+
 /* ═══ CTA BANNER ═══ */
 function CtaBanner() {
   return (
@@ -475,7 +639,7 @@ function CtaBanner() {
             <Flame className="w-6 h-6 text-white" />
           </div>
           <h2 className="font-head text-4xl sm:text-5xl text-white mb-2 tracking-wide">READY TO RUN?</h2>
-          <p className="text-white/30 text-xs mb-6">Join 5000+ runners. Limited spots available.</p>
+          <p className="text-white/80 text-xs mb-6">Join 5000+ runners. Limited spots available.</p>
           <a href="#events" className="inline-flex items-center gap-1.5 px-7 py-3 rounded-xl bg-white text-g800 text-xs font-bold hover:bg-g100 transition shadow-xl breathe">
             <Footprints size={14} /> Register Now <ArrowRight size={12} />
           </a>
@@ -487,187 +651,75 @@ function CtaBanner() {
 
 /* ═══ SPONSOR TIERS ═══ */
 const FT = [
-  'Title Sponsor',
-  'Event Sponsor',
-  'Logo on Certificate',
-  'Logo on Tickets',
-  'Event Sponsors',
-  'Logo on Banner',
-  'Logo on Website',
-  'Logo on Socials',
-  'Advertisement',
-  'Stalls',
+  'Title Sponsor', 'Event Sponsor', 'Logo on Certificate', 'Logo on Tickets',
+  'Event Sponsors', 'Logo on Banner', 'Logo on Website', 'Logo on Socials', 'Advertisement', 'Stalls',
 ];
-
 const TI = [
-  {
-    n: 'SILVER',
-    p: '₹50,000',
-    I: Medal,
-    bg: 'bg-gray-400',
-    glow: '',
-    freq: 'Every 1 Hr',
-    cat: 'Corporate',
-    f: [0, 0, 0, 1, 1, 0, 1, 1, 0, 0],
-  },
-  {
-    n: 'GOLD',
-    p: '₹75,000',
-    I: Award,
-    bg: 'bg-yellow-500',
-    glow: 'shadow-yellow-500/10',
-    freq: 'Every 30 Mins',
-    cat: 'Corporate',
-    f: [0, 0, 1, 1, 1, 1, 1, 1, 1, 0],
-  },
-  {
-    n: 'PLATINUM',
-    p: '₹1,00,000',
-    I: Crown,
-    bg: 'bg-cyan-400',
-    glow: 'shadow-cyan-400/20',
-    freq: 'Every 20 Mins',
-    cat: 'Executive',
-    pop: true,
-    f: [0, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  },
-  {
-    n: 'DIAMOND',
-    p: '₹2,00,000',
-    I: Gem,
-    bg: 'bg-g400',
-    glow: 'shadow-g400/20',
-    freq: 'Every 10 Mins',
-    cat: 'Executive',
-    f: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  },
+  { n: 'SILVER', p: '₹50,000', I: Medal, bg: 'bg-gray-400', glow: '', freq: 'Every 1 Hr', cat: 'Corporate', f: [0, 0, 0, 1, 1, 0, 1, 1, 0, 0] },
+  { n: 'GOLD', p: '₹75,000', I: Award, bg: 'bg-yellow-500', glow: 'shadow-yellow-500/10', freq: 'Every 30 Mins', cat: 'Corporate', f: [0, 0, 1, 1, 1, 1, 1, 1, 1, 0] },
+  { n: 'PLATINUM', p: '₹1,00,000', I: Crown, bg: 'bg-cyan-400', glow: 'shadow-cyan-400/20', freq: 'Every 20 Mins', cat: 'Executive', pop: true, f: [0, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
+  { n: 'DIAMOND', p: '₹2,00,000', I: Gem, bg: 'bg-g400', glow: 'shadow-g400/20', freq: 'Every 10 Mins', cat: 'Executive', f: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
 ];
 
 function SponsorTiers() {
   return (
     <section id="sponsor" className="relative overflow-hidden py-20 sm:py-28 noise">
       <div className="absolute inset-0 bg-gradient-to-b from-g900 via-g950 to-black" />
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(74,222,128,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.03) 1px,transparent 1px)',
-          backgroundSize: '48px 48px',
-        }}
-      />
+      <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(74,222,128,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.03) 1px,transparent 1px)', backgroundSize: '48px 48px' }} />
       <div className="absolute top-20 left-[15%] h-48 w-48 rounded-full bg-g500/8 blur-[80px] glow-pulse" />
-      <div
-        className="absolute bottom-20 right-[10%] h-64 w-64 rounded-full bg-cyan-500/5 blur-[100px] glow-pulse"
-        style={{ animationDelay: '1.5s' }}
-      />
+      <div className="absolute bottom-20 right-[10%] h-64 w-64 rounded-full bg-cyan-500/5 blur-[100px] glow-pulse" style={{ animationDelay: '1.5s' }} />
 
       <div className={`${W} relative z-10`}>
         <Fade>
           <div className="mb-6 text-center">
             <div className="glass mb-5 inline-flex items-center gap-2 rounded-full px-3 py-1">
               <Sparkles size={10} className="text-g400" />
-              <span className="text-[9px] font-bold tracking-wider text-g400">
-                SPONSORSHIP OPPORTUNITIES
-              </span>
+              <span className="text-[9px] font-bold tracking-wider text-g400">SPONSORSHIP OPPORTUNITIES</span>
             </div>
-
-            <h2 className="font-head text-[clamp(2.5rem,6vw,4.5rem)] leading-none tracking-wide text-white">
-              BECOME A <span className="shimmer">SPONSOR</span>
-            </h2>
-
-            <p className="mx-auto mt-4 max-w-md text-xs leading-relaxed text-white/25 sm:text-sm">
-              Support sustainability, boost your brand, and engage with 5000+ eco-conscious athletes.
-            </p>
+            <h2 className="font-head text-[clamp(2.5rem,6vw,4.5rem)] leading-none tracking-wide text-white">BECOME A <span className="shimmer">SPONSOR</span></h2>
+            <p className="mx-auto mt-4 max-w-md text-xs leading-relaxed text-white/25 sm:text-sm">Support sustainability, boost your brand, and engage with 5000+ eco-conscious athletes.</p>
           </div>
         </Fade>
-
         <Fade d={0.1}>
           <div className="mb-12 flex justify-center">
             <div className="glass inline-flex items-center gap-3 rounded-full px-5 py-2.5">
               <Heart className="float h-4 w-4 text-g400" />
-              <span className="text-[10px] font-bold text-white/50">
-                Join us in creating a <span className="text-g400">greener future</span>
-              </span>
+              <span className="text-[10px] font-bold text-white/50">Join us in creating a <span className="text-g400">greener future</span></span>
             </div>
           </div>
         </Fade>
-
-        {/* pt-6 reserves space so the popular badge doesn't break alignment */}
         <Stagger className="grid items-stretch gap-6 pt-6 sm:grid-cols-2 xl:grid-cols-4">
           {TI.map((t) => (
             <StaggerItem key={t.n} className="h-full">
               <div className="relative h-full">
                 {t.pop && (
                   <div className="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1/2">
-                    <div className="flex items-center gap-1 rounded-full bg-g500 px-4 py-1 text-[8px] font-bold tracking-wider text-white shadow-lg shadow-g500/30">
-                      <Sparkles size={8} />
-                      MOST POPULAR
-                    </div>
+                    <div className="flex items-center gap-1 rounded-full bg-g500 px-4 py-1 text-[8px] font-bold tracking-wider text-white shadow-lg shadow-g500/30"><Sparkles size={8} />MOST POPULAR</div>
                   </div>
                 )}
-
-                <div
-                  className={`relative flex h-full flex-col rounded-2xl overflow-hidden border transition-all duration-300 ${
-                    t.pop
-                      ? 'border-g400 bg-gradient-to-b from-white to-g50 shadow-2xl shadow-g400/15'
-                      : 'border-white/10 bg-white shadow-xl hover:-translate-y-1 hover:shadow-2xl'
-                  }`}
-                >
-                  {t.pop && (
-                    <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-g400 via-g500 to-g400" />
-                  )}
-
+                <div className={`relative flex h-full flex-col rounded-2xl overflow-hidden border transition-all duration-300 ${t.pop ? 'border-g400 bg-gradient-to-b from-white to-g50 shadow-2xl shadow-g400/15' : 'border-white/10 bg-white shadow-xl hover:-translate-y-1 hover:shadow-2xl'}`}>
+                  {t.pop && <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-g400 via-g500 to-g400" />}
                   <div className="flex flex-1 flex-col p-5">
                     <div className="mb-5 pt-3 text-center">
-                      <div
-                        className={`mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl ${t.bg} shadow-lg`}
-                      >
-                        <t.I className="h-5 w-5 text-white" />
-                      </div>
-
-                      <h3 className="font-head text-xl tracking-wider text-gray-900">
-                        {t.n}
-                      </h3>
-
-                      <p className="font-head mt-1 text-[1.7rem] leading-none text-g700">
-                        {t.p}
-                      </p>
-
-                      <p className="mt-1.5 text-[8px] font-medium text-gray-400">
-                        {t.freq} · {t.cat}
-                      </p>
+                      <div className={`mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl ${t.bg} shadow-lg`}><t.I className="h-5 w-5 text-white" /></div>
+                      <h3 className="font-head text-xl tracking-wider text-gray-900">{t.n}</h3>
+                      <p className="font-head mt-1 text-[1.7rem] leading-none text-g700">{t.p}</p>
+                      <p className="mt-1.5 text-[8px] font-medium text-gray-400">{t.freq} · {t.cat}</p>
                     </div>
-
                     <div className="mb-4 h-px w-full bg-gray-100" />
-
                     <div className="mb-6 flex-1 space-y-2">
                       {FT.map((f, j) => (
                         <div key={f} className="flex items-center gap-2 text-[10px]">
                           {t.f[j] ? (
-                            <div className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-g500/10">
-                              <Check size={8} className="text-g600" />
-                            </div>
+                            <div className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-g500/10"><Check size={8} className="text-g600" /></div>
                           ) : (
-                            <div className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-gray-50">
-                              <span className="text-[7px] text-gray-200">✕</span>
-                            </div>
+                            <div className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-gray-50"><span className="text-[7px] text-gray-200">✕</span></div>
                           )}
-
-                          <span className={t.f[j] ? 'font-medium text-gray-600' : 'text-gray-200'}>
-                            {f}
-                          </span>
+                          <span className={t.f[j] ? 'font-medium text-gray-600' : 'text-gray-200'}>{f}</span>
                         </div>
                       ))}
                     </div>
-
-                    <a
-                      href="#"
-                      className={`mt-auto w-full rounded-xl py-3 text-center text-[11px] font-bold transition-all duration-300 ${
-                        t.pop
-                          ? 'breathe bg-g600 text-white shadow-lg shadow-g600/20 hover:bg-g700'
-                          : 'border-2 border-g600 text-g700 hover:bg-g600 hover:text-white hover:shadow-lg'
-                      }`}
-                    >
+                    <a href="#" className={`mt-auto w-full rounded-xl py-3 text-center text-[11px] font-bold transition-all duration-300 ${t.pop ? 'breathe bg-g600 text-white shadow-lg shadow-g600/20 hover:bg-g700' : 'border-2 border-g600 text-g700 hover:bg-g600 hover:text-white hover:shadow-lg'}`}>
                       Join as Sponsor <ArrowRight size={11} className="ml-1 inline" />
                     </a>
                   </div>
@@ -676,16 +728,11 @@ function SponsorTiers() {
             </StaggerItem>
           ))}
         </Stagger>
-
         <Fade d={0.3}>
           <div className="mt-12 text-center">
             <p className="mb-3 text-[10px] text-white">Need a custom package?</p>
-            <a
-              href="mailto:info@greencircuit.in"
-              className="group inline-flex items-center gap-1.5 text-xs font-bold text-g400 transition hover:text-g300"
-            >
-              Contact us
-              <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
+            <a href="mailto:info@greencircuit.in" className="group inline-flex items-center gap-1.5 text-xs font-bold text-g400 transition hover:text-g300">
+              Contact us <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         </Fade>
@@ -723,9 +770,7 @@ function Faq() {
         <Stagger className="flex flex-col gap-3">
           {QA.map((q, i) => (
             <StaggerItem key={i}>
-              <div className={`rounded-2xl overflow-hidden transition-all duration-400 ${
-                o === i ? 'bg-g800/80 backdrop-blur-md border border-g400/20 shadow-lg shadow-g400/5' : 'bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] hover:border-white/[0.1] hover:bg-white/[0.05]'
-              }`}>
+              <div className={`rounded-2xl overflow-hidden transition-all duration-400 ${o === i ? 'bg-g800/80 backdrop-blur-md border border-g400/20 shadow-lg shadow-g400/5' : 'bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] hover:border-white/[0.1] hover:bg-white/[0.05]'}`}>
                 <button onClick={() => setO(o === i ? -1 : i)} className="w-full flex items-center justify-between p-5 text-left group">
                   <div className="flex items-center gap-3 pr-4">
                     <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 ${o === i ? 'bg-g500 shadow-md shadow-g500/30' : 'bg-white/[0.05]'}`}>
@@ -767,7 +812,6 @@ function Faq() {
 const SOCIALS = [
   { name: 'Facebook', href: '#', icon: '/images/Facebook 1.png' },
   { name: 'Instagram', href: '#', icon: '/images/Instagram_1.png' },
-  
   { name: 'YouTube', href: '#', icon: '/images/linkedin-1.png' },
 ];
 
@@ -775,129 +819,66 @@ function Footer() {
   return (
     <footer className="bg-g950 relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-g400/15 to-transparent" />
-
       <div className={`${W} pt-16`}>
         <Fade>
           <div className="rounded-2xl bg-gradient-to-r from-g800 to-g900 border border-g700/30 p-8 sm:p-10 mb-14">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
               <div>
-                <h3 className="font-head text-2xl sm:text-3xl text-white tracking-wider mb-1.5">
-                  STAY IN THE LOOP
-                </h3>
-                <p className="text-white/40 text-sm">
-                  Get updates about events, sponsorship, and opportunities.
-                </p>
+                <h3 className="font-head text-2xl sm:text-3xl text-white tracking-wider mb-1.5">STAY IN THE LOOP</h3>
+                <p className="text-white/40 text-sm">Get updates about events, sponsorship, and opportunities.</p>
               </div>
-
               <div className="flex gap-2.5 w-full sm:w-auto">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="flex-1 sm:w-56 px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-g400/40 focus:bg-white/[0.08] transition"
-                />
-                <button className="px-6 py-3 bg-g500 text-white text-sm font-bold rounded-xl hover:bg-g400 transition-all shadow-lg shadow-g500/20 breathe whitespace-nowrap">
-                  Subscribe
-                </button>
+                <input type="email" placeholder="your@email.com" className="flex-1 sm:w-56 px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-g400/40 focus:bg-white/[0.08] transition" />
+                <button className="px-6 py-3 bg-g500 text-white text-sm font-bold rounded-xl hover:bg-g400 transition-all shadow-lg shadow-g500/20 breathe whitespace-nowrap">Subscribe</button>
               </div>
             </div>
           </div>
         </Fade>
       </div>
-
       <div className={`${W} pb-8`}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/[0.06]">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img
-                src="/images/GC.png"
-                alt="Green Circuit"
-                className="h-7 sm:h-8 w-auto object-contain shrink-0"
-              />
-              <span className="flex items-center leading-none font-head text-lg sm:text-xl tracking-wider text-white">
-                GREEN <span className="text-g400 ml-1">CIRCUIT</span>
-              </span>
+              <img src="/images/GC.png" alt="Green Circuit" className="h-7 sm:h-8 w-auto object-contain shrink-0" />
+              <span className="flex items-center leading-none font-head text-lg sm:text-xl tracking-wider text-white">GREEN <span className="text-g400 ml-1">CIRCUIT</span></span>
             </div>
-
-            <p className="text-white/40 text-sm leading-relaxed mb-5">
-              Bengaluru's premier eco-sports event for a greener tomorrow.
-            </p>
-
+            <p className="text-white/40 text-sm leading-relaxed mb-5">Bengaluru's premier eco-sports event for a greener tomorrow.</p>
             <div className="flex gap-2.5">
               {SOCIALS.map((s) => (
-                <a
-                  key={s.name}
-                  href={s.href}
-                  aria-label={s.name}
-                  className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center hover:border-g400/30 hover:bg-g400/10 transition-all group"
-                >
-                  <img
-                    src={s.icon}
-                    alt={s.name}
-                    className="w-4 h-4 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
-                  />
+                <a key={s.name} href={s.href} aria-label={s.name} className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center hover:border-g400/30 hover:bg-g400/10 transition-all group">
+                  <img src={s.icon} alt={s.name} className="w-4 h-4 object-contain opacity-70 group-hover:opacity-100 transition-opacity" />
                 </a>
               ))}
             </div>
           </div>
-
           <div>
             <h4 className="font-head text-base text-white tracking-wider mb-4">EVENTS</h4>
             <div className="flex flex-col gap-2.5">
               {['Marathon — 10K & 5K', 'Cyclotron — 30K Ride', 'Funathon — Fun Run'].map((l) => (
-                <a key={l} href="#events" className="text-white/40 text-sm hover:text-g400 transition-colors">
-                  {l}
-                </a>
+                <a key={l} href="#events" className="text-white/40 text-sm hover:text-g400 transition-colors">{l}</a>
               ))}
             </div>
           </div>
-
           <div>
             <h4 className="font-head text-base text-white tracking-wider mb-4">COMPANY</h4>
             <div className="flex flex-col gap-2.5">
               {['About Us', 'Become a Sponsor', 'Privacy Policy', 'Terms & Conditions'].map((l) => (
-                <a key={l} href="#" className="text-white/40 text-sm hover:text-g400 transition-colors">
-                  {l}
-                </a>
+                <a key={l} href="#" className="text-white/40 text-sm hover:text-g400 transition-colors">{l}</a>
               ))}
             </div>
           </div>
-
           <div>
             <h4 className="font-head text-base text-white tracking-wider mb-4">CONTACT</h4>
             <div className="flex flex-col gap-3">
-              <a
-                href="mailto:info@greencircuit.in"
-                className="text-white/40 text-sm flex items-center gap-2.5 hover:text-g400 transition-colors"
-              >
-                <Mail size={14} className="text-g400/60 flex-shrink-0" />
-                info@greencircuit.in
-              </a>
-
-              <a
-                href="tel:+919876543210"
-                className="text-white/40 text-sm flex items-center gap-2.5 hover:text-g400 transition-colors"
-              >
-                <Phone size={14} className="text-g400/60 flex-shrink-0" />
-                +91 98765 43210
-              </a>
-
-              <span className="text-white/40 text-sm flex items-center gap-2.5">
-                <MapPin size={14} className="text-g400/60 flex-shrink-0" />
-                Bengaluru, Karnataka, India
-              </span>
+              <a href="mailto:info@greencircuit.in" className="text-white/40 text-sm flex items-center gap-2.5 hover:text-g400 transition-colors"><Mail size={14} className="text-g400/60 flex-shrink-0" />info@greencircuit.in</a>
+              <a href="tel:+919876543210" className="text-white/40 text-sm flex items-center gap-2.5 hover:text-g400 transition-colors"><Phone size={14} className="text-g400/60 flex-shrink-0" />+91 98765 43210</a>
+              <span className="text-white/40 text-sm flex items-center gap-2.5"><MapPin size={14} className="text-g400/60 flex-shrink-0" />Bengaluru, Karnataka, India</span>
             </div>
           </div>
         </div>
-
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6">
-          <p className="text-white/25 text-xs">
-            © {new Date().getFullYear()} Green Circuit. All rights reserved.
-          </p>
-
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center text-g400 hover:bg-g400/10 hover:border-g400/30 transition-all group"
-          >
+          <p className="text-white/25 text-xs">© {new Date().getFullYear()} Green Circuit. All rights reserved.</p>
+          <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center text-g400 hover:bg-g400/10 hover:border-g400/30 transition-all group">
             <ArrowUp size={14} className="group-hover:-translate-y-0.5 transition-transform" />
           </button>
         </div>
@@ -907,7 +888,7 @@ function Footer() {
 }
 
 /* ═══ HOME PAGE ═══ */
-const M1 = ['🏃 MARATHON', '🚴 CYCLOTRON', '🎉 FUNATHON', '🏆 ₹2L PRIZE POOL', '📍 BENGALURU', '📅 JUNE 1, 2025', '⚡ 5000+ RUNNERS', '🌿 GO GREEN', '🔥 LIMITED SPOTS'];
+const M1 = [' MARATHON', ' CYCLOTRON', 'FUNATHON', ' ₹2L PRIZE POOL', ' BENGALURU', ' JUNE 1, 2025', ' 5000+ RUNNERS', ' GO GREEN', ' LIMITED SPOTS'];
 const M2 = ['REGISTER NOW →', 'RUN FOR A CAUSE', 'PEDAL FOR THE PLANET', 'MAKE AN IMPACT', 'JOIN THE MOVEMENT', 'ACT NOW', 'BE THE CHANGE', 'GREEN IS THE NEW GOLD'];
 
 export default function HomePage() {
@@ -921,9 +902,8 @@ export default function HomePage() {
       <Impact />
       <Sponsors />
       <Testimonials />
-      <CtaBanner />
       <Marquee items={M1} bg="bg-g800" speed="18s" />
-      <SponsorTiers />
+      <PastEvents />
       <Faq />
       <Footer />
     </>
