@@ -141,83 +141,164 @@ function Dig({ v, l }) {
 }
 
 function Hero() {
-  const cd = useCD('2026-06-01T06:00:00+05:30');
+  // const cd = useCD('2026-06-01T06:00:00+05:30');
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 0.35], [0, 120]);
   const opacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
-  const d = (del) => ({ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { delay: del, duration: 0.5, ease: [.25,.1,.25,1] } });
+
+  const d = (del) => ({
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { delay: del, duration: 0.5, ease: [.25, .1, .25, 1] }
+  });
 
   return (
     <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-g950 noise">
       <motion.div style={{ y }} className="absolute inset-0">
         <video
-          autoPlay muted loop playsInline preload="auto"
-          className="w-full h-full object-cover opacity-25 zoom-bg"
-          poster="https://images.unsplash.com/photo-1596727147705-61a532a659bd?w=1920&q=80"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover opacity-20"
+          poster="/images/GC.png"
         >
-          <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
+          <source src="/videos/hero-video.mp4" type="video/mp4" />
         </video>
       </motion.div>
-      <div className="absolute inset-0 bg-gradient-to-b from-g950/50 via-transparent to-g950" />
+
+      <div className="absolute inset-0 bg-gradient-to-b from-g950/75 via-g950/50 to-g950" />
+      <div className="absolute inset-0 bg-black/25" />
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-g950 to-transparent" />
-      <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(74,222,128,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.04) 1px,transparent 1px)', backgroundSize: '48px 48px' }} />
+
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(74,222,128,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.04) 1px,transparent 1px)',
+          backgroundSize: '48px 48px'
+        }}
+      />
+
       <div className="absolute top-20 left-6 w-12 h-12 border-t border-l border-g400/15 hidden lg:block" />
       <div className="absolute bottom-20 right-6 w-12 h-12 border-b border-r border-g400/15 hidden lg:block" />
       <div className="absolute top-1/4 left-[10%] w-48 h-48 rounded-full bg-g500/5 blur-[60px] glow-pulse" />
-      <div className="absolute bottom-1/3 right-[15%] w-36 h-36 rounded-full bg-g400/5 blur-[50px] glow-pulse" style={{ animationDelay: '1.5s' }} />
+      <div
+        className="absolute bottom-1/3 right-[15%] w-36 h-36 rounded-full bg-g400/5 blur-[50px] glow-pulse"
+        style={{ animationDelay: '1.5s' }}
+      />
 
-      <motion.div style={{ opacity }} className="relative z-10 w-full text-center pt-24 pb-16 px-5">
-        <motion.div {...d(0.1)} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass mb-8">
-          <span className="w-1.5 h-1.5 rounded-full bg-g400" style={{ animation: 'pulse-dot 1.5s infinite' }} />
-          <span className="text-g400 text-[10px] font-bold tracking-wider">REGISTRATIONS OPEN</span>
-          <Sparkles size={10} className="text-g400/50" />
-        </motion.div>
+      <motion.div
+        style={{ opacity }}
+        className="relative z-10 w-full pt-24 pb-16 px-5"
+      >
+        <div className="max-w-4xl mx-auto text-center rounded-3xl bg-black/28 border border-white/10 backdrop-blur-md px-6 sm:px-10 py-10 sm:py-14 shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
+          <motion.div
+            {...d(0.1)}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 mb-8"
+          >
+            <span
+              className="w-1.5 h-1.5 rounded-full bg-g400"
+              style={{ animation: 'pulse-dot 1.5s infinite' }}
+            />
+            <span className="text-g400 text-[10px] font-bold tracking-wider">
+              REGISTRATIONS OPEN
+            </span>
+          </motion.div>
 
-        <motion.h1 {...d(0.25)} className="font-head text-[clamp(3rem,10vw,9rem)] leading-[0.9] tracking-wide max-w-5xl mx-auto mb-5">
-          <span className="text-white">GREEN CIRCUIT:</span><br />
-          <span className="shimmer">ACT NOW</span><br />
-          <span className="text-white">FOR A </span><span className="text-g400">BETTER</span><br />
-          <span className="text-g400">TOMORROW!</span>
-        </motion.h1>
+          <motion.h1
+            {...d(0.25)}
+            className="font-head text-[clamp(3rem,10vw,8rem)] leading-[0.9] tracking-wide max-w-5xl mx-auto mb-5"
+          >
+            <span className="text-white">GREEN CIRCUIT:</span><br />
+            <span className="shimmer">ACT NOW</span><br />
+            <span className="text-white">FOR A </span>
+            <span className="text-g400">BETTER</span><br />
+            <span className="text-g400">TOMORROW!</span>
+          </motion.h1>
 
-        <motion.p {...d(0.4)} className="text-white/35 text-xs sm:text-sm max-w-md mx-auto mb-8 leading-relaxed">
-          Bengaluru's biggest eco-sports event. Run, ride, and make an impact for a greener future.
-        </motion.p>
+          <motion.p
+            {...d(0.4)}
+            className="text-white/85 text-sm sm:text-base max-w-2xl mx-auto mb-8 leading-relaxed"
+          >
+            Bengaluru&apos;s biggest eco-sports event. Run, ride, and make an impact for a greener future.
+          </motion.p>
 
-        <motion.div {...d(0.5)} className="flex flex-wrap justify-center gap-2.5 mb-12">
-          <a href="#events" className="group relative inline-flex items-center gap-1.5 px-6 py-2.5 rounded-lg bg-g500 text-white text-xs font-bold hover:bg-g600 transition-all shadow-lg shadow-g500/20 breathe overflow-hidden">
-            <span className="relative z-10 flex items-center gap-1.5"><Flame size={13} /> Register Now</span>
-          </a>
-          <a href="#" className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-lg text-white/70 text-xs font-bold glass hover:bg-white/10 transition">
-            <Download size={13} /> Brochure
-          </a>
-        </motion.div>
+          <motion.div {...d(0.5)} className="flex flex-wrap justify-center gap-3 mb-10">
+            <a
+              href="#events"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-g500 text-white text-sm font-bold hover:bg-g600 transition-all shadow-lg shadow-g500/25"
+            >
+              <Flame size={14} className="text-white" />
+              <span>Register Now</span>
+            </a>
 
-        <motion.div {...d(0.6)}>
-          <div className="flex items-center justify-center gap-1.5 mb-4">
-            <Timer size={11} className="text-g400/50" />
-            <p className="text-[8px] text-white/80 uppercase tracking-[0.3em] font-bold">Countdown to race day</p>
-          </div>
-          <div className="flex justify-center gap-2.5 sm:gap-3 mb-10">
-            <Dig v={cd.d} l="Days" /><Dig v={cd.h} l="Hours" /><Dig v={cd.m} l="Mins" /><Dig v={cd.s} l="Secs" />
-          </div>
-        </motion.div>
+            <a
+              href="#"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-white/12 border border-white/20 text-white text-sm font-bold hover:bg-white/18 transition-all"
+            >
+              <Download size={14} className="text-white" />
+              <span>Brochure</span>
+            </a>
+          </motion.div>
 
-        <motion.div {...d(0.75)} className="inline-flex items-center gap-3 px-5 py-3 rounded-xl glass">
-          <div className="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center float">
-            <Trophy className="w-5 h-5 text-yellow-400" />
-          </div>
-          <div className="text-left">
-            <p className="text-[7px] text-white/20 uppercase tracking-[0.2em] font-bold">Total Prize Pool</p>
-            <p className="font-head text-[1.7rem] text-g400 leading-none" style={{ textShadow: '0 0 25px rgba(74,222,128,.25)' }}>₹2,00,000</p>
-          </div>
-        </motion.div>
+          {/*
+          <motion.div {...d(0.6)}>
+            <div className="flex items-center justify-center gap-1.5 mb-4">
+              <Timer size={11} className="text-g400/70" />
+              <p className="text-[8px] text-white/90 uppercase tracking-[0.3em] font-bold">
+                Countdown to race day
+              </p>
+            </div>
+            <div className="flex justify-center gap-2.5 sm:gap-3 mb-10">
+              <Dig v={cd.d} l="Days" />
+              <Dig v={cd.h} l="Hours" />
+              <Dig v={cd.m} l="Mins" />
+              <Dig v={cd.s} l="Secs" />
+            </div>
+          </motion.div>
+          */}
 
-        <motion.div {...d(0.85)} className="flex flex-wrap justify-center gap-5 mt-6 text-[9px] text-white/20 font-medium">
-          <span className="flex items-center gap-1"><CalendarDays size={10} className="text-g400/60" />June 1, 2025</span>
-          <span className="flex items-center gap-1"><MapPin size={10} className="text-g400/60" />Bengaluru</span>
-          <span className="flex items-center gap-1"><Users size={10} className="text-g400/60" />5000+ Runners</span>
-        </motion.div>
+          <motion.div
+            {...d(0.75)}
+            className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-black/40 border border-white/15 shadow-lg"
+          >
+            <div className="w-10 h-10 rounded-lg bg-yellow-500/20 flex items-center justify-center">
+              <Trophy className="w-5 h-5 text-yellow-400" />
+            </div>
+
+            <div className="text-left">
+              <p className="text-[8px] text-white/70 uppercase tracking-[0.2em] font-bold">
+                Total Prize Pool
+              </p>
+              <p
+                className="font-head text-[1.8rem] text-g400 leading-none"
+                style={{ textShadow: '0 0 25px rgba(74,222,128,.25)' }}
+              >
+                ₹2,00,000
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            {...d(0.85)}
+            className="flex flex-wrap justify-center gap-6 mt-6 text-[10px] text-white/80 font-medium"
+          >
+            <span className="flex items-center gap-1.5">
+              <CalendarDays size={10} className="text-g400" />
+              June 14, 2026
+            </span>
+            <span className="flex items-center gap-1.5">
+              <MapPin size={10} className="text-g400" />
+              Bengaluru
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Users size={10} className="text-g400" />
+              10000+ Runners
+            </span>
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   );
@@ -225,8 +306,8 @@ function Hero() {
 
 /* ═══ EVENTS ═══ */
 const EV = [
-  { t: 'Marathon', tag: '10K & 5K', I: Footprints, img: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80', d: 'Push your limits on Bengaluru\'s greenest route through Cubbon Park.', loc: 'Cubbon Park', cap: '2000+', price: '₹499' },
-  { t: 'Cyclotron', tag: '30K Ride', I: Bike, img: 'https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&q=80', d: 'Pedal for the planet through iconic landscapes starting from Lalbagh.', loc: 'Lalbagh Gate', cap: '1500+', price: '₹699' },
+  { t: 'EcoMiles', tag: '10K & 5K & 3K', I: Footprints, img: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80', d: 'Push your limits on Bengaluru\'s greenest route through Cubbon Park.', loc: 'Cubbon Park', cap: '2000+', price: '₹499' },
+  { t: 'CycleStreet', tag: '30K Ride', I: Bike, img: 'https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&q=80', d: 'Pedal for the planet through iconic landscapes starting from Lalbagh.', loc: 'Lalbagh Gate', cap: '1500+', price: '₹699' },
   { t: 'Funathon', tag: 'Fun Run', I: PartyPopper, img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80', d: 'A fun-filled celebration for the whole family at Freedom Park.', loc: 'Freedom Park', cap: '3000+', price: '₹299' },
 ];
 
@@ -301,28 +382,54 @@ function Impact() {
 
 /* ═══ SPONSORS ═══ */
 const SP = [
-  { n: 'Friends of Nature', i: '🐅' }, { n: "Vasundaraa's Farms", i: '🌾' },
-  { n: 'Decathlon', i: '🏅' }, { n: 'Manipal Hospitals', i: '🏥' },
-  { n: 'United Hospitals', i: '❤️' }, { n: 'Sparsh Hospital', i: '🩺' },
+  { n: 'Sponsor 1', img: '/images/sp_1.png' },
+  { n: 'Sponsor 2', img: '/images/sp_2.jpg' },
+  { n: 'Sponsor 3', img: '/images/sp_3.jpg' },
+  { n: 'Sponsor 4', img: '/images/sp_4.png' },
+  { n: 'Sponsor 5', img: '/images/sp_5.png' },
+  { n: 'Sponsor 6', img: '/images/sp_6.jpg' },
+  { n: 'Sponsor 7', img: '/images/sp_7.png' },
+  { n: 'Sponsor 8', img: '/images/sp_8.png' },
+  { n: 'Sponsor 9', img: '/images/sp_9.png' },
+  { n: 'Sponsor 10', img: '/images/sp_10.png' },
+  { n: 'Sponsor 11', img: '/images/sp_11.jpg' },
+  { n: 'Sponsor 12', img: '/images/sp_12.png' },
+  { n: 'Sponsor 13', img: '/images/sp_13.png' },
+  { n: 'Sponsor 14', img: '/images/sp_14.jpg' },
+  { n: 'Sponsor 15', img: '/images/sp_15.png' },
+  { n: 'Sponsor 16', img: '/images/sp_16.jpg' },
+  { n: 'Sponsor 17', img: '/images/sp_17.jpg' },
+  { n: 'Sponsor 18', img: '/images/sp_18.jpg' },
+  { n: 'Sponsor 19', img: '/images/sp_19.jpg' },
+  { n: 'Sponsor 20', img: '/images/sp_20.png' },
 ];
 
 function Sponsors() {
   return (
     <section id="sponsors" className="bg-g900 py-16 sm:py-20 relative overflow-hidden noise">
       <div className="absolute top-0 left-1/3 w-60 h-60 bg-g600/8 rounded-full blur-[100px]" />
+
       <div className={`${W} relative z-10`}>
         <Fade>
           <Head ey="Past Supporters" ti="OUR SPONSORS" dark />
         </Fade>
+
         <div className="overflow-hidden mt-8">
-          <div className="mq-l flex w-max gap-4" style={{ animationDuration: '22s' }}>
-            {[...SP, ...SP, ...SP].map((s, i) => (
+          <div
+            className="mq-l flex w-max gap-4 items-center"
+            style={{ animationDuration: '30s' }}
+          >
+            {[...SP, ...SP].map((s, i) => (
               <div
                 key={`${s.n}-${i}`}
-                className="glass rounded-xl p-4 text-center hover:bg-white/[0.08] transition-all duration-300 cursor-pointer group min-w-[130px] sm:min-w-[150px]"
+                className="rounded-xl p-4 flex items-center justify-center bg-white border border-white/20 shadow-md hover:scale-[1.02] transition-all duration-300 cursor-pointer group min-w-[140px] h-[90px] sm:min-w-[180px] sm:h-[110px]"
               >
-                <span className="text-2xl block mb-2 group-hover:scale-125 transition-transform duration-300">{s.i}</span>
-                <p className="text-white/70 text-[9px] sm:text-[10px] font-bold leading-tight">{s.n}</p>
+                <img
+                  src={s.img}
+                  alt={s.n}
+                  className="max-h-[50px] sm:max-h-[65px] max-w-[110px] sm:max-w-[140px] object-contain group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
               </div>
             ))}
           </div>
@@ -331,7 +438,6 @@ function Sponsors() {
     </section>
   );
 }
-
 /* ═══ PAST EVENTS ═══ */
 const PAST_EVENTS_LIST = [
   {
@@ -352,15 +458,15 @@ const PAST_EVENTS_LIST = [
     participants: '5,000+',
     edition: '4th Edition',
   },
-  {
-    id: 3,
-    tag: 'GC · 3rd June 2023',
-    title: 'Green Dash',
-    desc: 'A high-energy fun run that brought together families, students, and fitness enthusiasts for a greener Bengaluru.',
-    img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80',
-    participants: '3,500+',
-    edition: '3rd Edition',
-  },
+  // {
+  //   id: 3,
+  //   tag: 'GC · 3rd June 2023',
+  //   title: 'Green Dash',
+  //   desc: 'A high-energy fun run that brought together families, students, and fitness enthusiasts for a greener Bengaluru.',
+  //   img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80',
+  //   participants: '3,500+',
+  //   edition: '3rd Edition',
+  // },
 ];
 
 const FEATURED_PAST = {
@@ -810,8 +916,8 @@ function Faq() {
 
 /* ═══ FOOTER ═══ */
 const SOCIALS = [
-  { name: 'Facebook', href: '#', icon: '/images/Facebook 1.png' },
-  { name: 'Instagram', href: '#', icon: '/images/Instagram_1.png' },
+  { name: 'Facebook', href: 'https://www.facebook.com/share/1DavMRpSM6/', icon: '/images/Facebook 1.png' },
+  { name: 'Instagram', href: 'https://www.instagram.com/greencircuit.blr?igsh=MW15OXJ3MGg0eDZw', icon: '/images/Instagram_1.png' },
   { name: 'YouTube', href: '#', icon: '/images/linkedin-1.png' },
 ];
 
@@ -819,66 +925,131 @@ function Footer() {
   return (
     <footer className="bg-g950 relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-g400/15 to-transparent" />
+
       <div className={`${W} pt-16`}>
         <Fade>
-          <div className="rounded-2xl bg-gradient-to-r from-g800 to-g900 border border-g700/30 p-8 sm:p-10 mb-14">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-              <div>
-                <h3 className="font-head text-2xl sm:text-3xl text-white tracking-wider mb-1.5">STAY IN THE LOOP</h3>
-                <p className="text-white/40 text-sm">Get updates about events, sponsorship, and opportunities.</p>
+          <div className="rounded-2xl bg-gradient-to-r from-g800 to-g900 border border-g700/30 p-6 sm:p-10 mb-14 overflow-hidden">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+              <div className="w-full lg:w-auto">
+                <h3 className="font-head text-2xl sm:text-3xl text-white tracking-wider mb-2">
+                  STAY IN THE LOOP
+                </h3>
+                <p className="text-white/55 text-sm sm:text-base max-w-md">
+                  Get updates about events, sponsorship, and opportunities.
+                </p>
               </div>
-              <div className="flex gap-2.5 w-full sm:w-auto">
-                <input type="email" placeholder="your@email.com" className="flex-1 sm:w-56 px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-white text-sm placeholder:text-white/20 focus:outline-none focus:border-g400/40 focus:bg-white/[0.08] transition" />
-                <button className="px-6 py-3 bg-g500 text-white text-sm font-bold rounded-xl hover:bg-g400 transition-all shadow-lg shadow-g500/20 breathe whitespace-nowrap">Subscribe</button>
+
+              <div className="w-full lg:w-auto">
+                <div className="flex flex-col sm:flex-row gap-3 w-full">
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    className="w-full sm:min-w-[280px] lg:w-[320px] px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-g400/40 focus:bg-white/[0.08] transition"
+                  />
+                  <button className="w-full sm:w-auto px-6 py-3 bg-g500 text-white text-sm font-bold rounded-xl hover:bg-g400 transition-all shadow-lg shadow-g500/20 whitespace-nowrap">
+                    Subscribe
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </Fade>
       </div>
+
       <div className={`${W} pb-8`}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/[0.06]">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img src="/images/GC.png" alt="Green Circuit" className="h-7 sm:h-8 w-auto object-contain shrink-0" />
-              <span className="flex items-center leading-none font-head text-lg sm:text-xl tracking-wider text-white">GREEN <span className="text-g400 ml-1">CIRCUIT</span></span>
+              <img
+                src="/images/GC.png"
+                alt="Green Circuit"
+                className="h-7 sm:h-8 w-auto object-contain shrink-0"
+              />
+              <span className="flex items-center leading-none font-head text-lg sm:text-xl tracking-wider text-white">
+                GREEN <span className="text-g400 ml-1">CIRCUIT</span>
+              </span>
             </div>
-            <p className="text-white/40 text-sm leading-relaxed mb-5">Bengaluru's premier eco-sports event for a greener tomorrow.</p>
+
+            <p className="text-white/40 text-sm leading-relaxed mb-5">
+              Bengaluru&apos;s premier eco-sports event for a greener tomorrow.
+            </p>
+
             <div className="flex gap-2.5">
               {SOCIALS.map((s) => (
-                <a key={s.name} href={s.href} aria-label={s.name} className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center hover:border-g400/30 hover:bg-g400/10 transition-all group">
-                  <img src={s.icon} alt={s.name} className="w-4 h-4 object-contain opacity-70 group-hover:opacity-100 transition-opacity" />
+                <a
+                  key={s.name}
+                  href={s.href}
+                  aria-label={s.name}
+                  className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center hover:border-g400/30 hover:bg-g400/10 transition-all group"
+                >
+                  <img
+                    src={s.icon}
+                    alt={s.name}
+                    className="w-4 h-4 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                  />
                 </a>
               ))}
             </div>
           </div>
+
           <div>
             <h4 className="font-head text-base text-white tracking-wider mb-4">EVENTS</h4>
             <div className="flex flex-col gap-2.5">
               {['Marathon — 10K & 5K', 'Cyclotron — 30K Ride', 'Funathon — Fun Run'].map((l) => (
-                <a key={l} href="#events" className="text-white/40 text-sm hover:text-g400 transition-colors">{l}</a>
+                <a key={l} href="#events" className="text-white/40 text-sm hover:text-g400 transition-colors">
+                  {l}
+                </a>
               ))}
             </div>
           </div>
+
           <div>
             <h4 className="font-head text-base text-white tracking-wider mb-4">COMPANY</h4>
             <div className="flex flex-col gap-2.5">
               {['About Us', 'Become a Sponsor', 'Privacy Policy', 'Terms & Conditions'].map((l) => (
-                <a key={l} href="#" className="text-white/40 text-sm hover:text-g400 transition-colors">{l}</a>
+                <a key={l} href="#" className="text-white/40 text-sm hover:text-g400 transition-colors">
+                  {l}
+                </a>
               ))}
             </div>
           </div>
+
           <div>
             <h4 className="font-head text-base text-white tracking-wider mb-4">CONTACT</h4>
             <div className="flex flex-col gap-3">
-              <a href="mailto:info@greencircuit.in" className="text-white/40 text-sm flex items-center gap-2.5 hover:text-g400 transition-colors"><Mail size={14} className="text-g400/60 flex-shrink-0" />info@greencircuit.in</a>
-              <a href="tel:+919876543210" className="text-white/40 text-sm flex items-center gap-2.5 hover:text-g400 transition-colors"><Phone size={14} className="text-g400/60 flex-shrink-0" />+91 98765 43210</a>
-              <span className="text-white/40 text-sm flex items-center gap-2.5"><MapPin size={14} className="text-g400/60 flex-shrink-0" />Bengaluru, Karnataka, India</span>
+              <a
+                href="mailto:info@greencircuit.in"
+                className="text-white/40 text-sm flex items-center gap-2.5 hover:text-g400 transition-colors"
+              >
+                <Mail size={14} className="text-g400/60 flex-shrink-0" />
+                info@greencircuit.in
+              </a>
+
+              <a
+                href="tel:+919876543210"
+                className="text-white/40 text-sm flex items-center gap-2.5 hover:text-g400 transition-colors"
+              >
+                <Phone size={14} className="text-g400/60 flex-shrink-0" />
+                +91 98765 43210
+              </a>
+
+              <span className="text-white/40 text-sm flex items-center gap-2.5">
+                <MapPin size={14} className="text-g400/60 flex-shrink-0" />
+                Bengaluru, Karnataka, India
+              </span>
             </div>
           </div>
         </div>
+
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6">
-          <p className="text-white/25 text-xs">© {new Date().getFullYear()} Green Circuit. All rights reserved.</p>
-          <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center text-g400 hover:bg-g400/10 hover:border-g400/30 transition-all group">
+          <p className="text-white/25 text-xs text-center sm:text-left">
+            © {new Date().getFullYear()} Green Circuit. All rights reserved.
+          </p>
+
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="w-9 h-9 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center text-g400 hover:bg-g400/10 hover:border-g400/30 transition-all group"
+          >
             <ArrowUp size={14} className="group-hover:-translate-y-0.5 transition-transform" />
           </button>
         </div>
@@ -900,6 +1071,8 @@ export default function HomePage() {
       <Events />
       <Marquee items={M2} dir="r" bg="bg-g950" speed="28s" />
       <Impact />
+      
+      <SponsorTiers />
       <Sponsors />
       <Testimonials />
       <Marquee items={M1} bg="bg-g800" speed="18s" />
