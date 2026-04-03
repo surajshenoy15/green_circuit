@@ -1037,7 +1037,7 @@ function SponsorTiers() {
         <Fade d={0.1}>
           <div className="mb-12 flex justify-center">
             <div className="glass inline-flex items-center gap-3 rounded-full px-5 py-2.5">
-              <Heart className="float h-4 w-4 text-g400" />
+              <Heart className=" h-4 w-4 text-g400" />
               <span className="text-[10px] font-bold text-white/50">
                 Join us in creating a <span className="text-g400">greener future</span>
               </span>
