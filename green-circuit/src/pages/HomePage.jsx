@@ -3,7 +3,7 @@ import { motion, useInView, AnimatePresence, useScroll, useTransform } from 'fra
 import {
   Menu, X, Users, Download, Trophy, CalendarDays, MapPin,
   Footprints, Bike, PartyPopper, ArrowRight, Clock, TreePine, Award,
-  Star, Quote, Check, Medal, Crown, Gem, ChevronDown, Mail, Phone,
+  Star, Quote, Check, Medal, Crown, Gem, Shield, ChevronDown, Mail, Phone,
   ArrowUp, Zap, Timer, Flame, Heart, Sparkles, ImageIcon
 } from 'lucide-react';
 import { W, Stagger, StaggerItem, Fade, Head } from '../components/shared';
@@ -164,12 +164,12 @@ function Hero() {
           className="w-full h-full object-cover opacity-20"
           poster="/images/GC.png"
         >
-          <source src="/videos/hero-video.mp4" type="video/mp4" />
+          <source src="/videos/gc-hero.mp4" type="video/mp4" />
         </video>
       </motion.div>
 
       <div className="absolute inset-0 bg-gradient-to-b from-g950/75 via-g950/50 to-g950" />
-      <div className="absolute inset-0 bg-black/25" />
+      <div className="absolute inset-0 bg-black/0.01" />
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-g950 to-transparent" />
 
       <div
@@ -193,10 +193,10 @@ function Hero() {
         style={{ opacity }}
         className="relative z-10 w-full pt-24 pb-16 px-5"
       >
-        <div className="max-w-4xl mx-auto text-center rounded-3xl bg-black/28 border border-white/10 backdrop-blur-md px-6 sm:px-10 py-10 sm:py-14 shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
+        <div className="max-w-5xl mx-auto text-center">
           <motion.div
             {...d(0.1)}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 mb-8"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 mb-8 backdrop-blur-sm"
           >
             <span
               className="w-1.5 h-1.5 rounded-full bg-g400"
@@ -236,7 +236,7 @@ function Hero() {
 
             <a
               href="#"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-white/12 border border-white/20 text-white text-sm font-bold hover:bg-white/18 transition-all"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-white/12 border border-white/20 text-white text-sm font-bold hover:bg-white/18 transition-all backdrop-blur-sm"
             >
               <Download size={14} className="text-white" />
               <span>Brochure</span>
@@ -262,7 +262,7 @@ function Hero() {
 
           <motion.div
             {...d(0.75)}
-            className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-black/40 border border-white/15 shadow-lg"
+            className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-black/30 border border-white/10 shadow-lg backdrop-blur-sm"
           >
             <div className="w-10 h-10 rounded-lg bg-yellow-500/20 flex items-center justify-center">
               <Trophy className="w-5 h-5 text-yellow-400" />
@@ -306,37 +306,96 @@ function Hero() {
 
 /* ═══ EVENTS ═══ */
 const EV = [
-  { t: 'EcoMiles', tag: '10K & 5K & 3K', I: Footprints, img: 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80', d: 'Push your limits on Bengaluru\'s greenest route through Cubbon Park.', loc: 'Cubbon Park', cap: '2000+', price: '₹499' },
-  { t: 'CycleStreet', tag: '30K Ride', I: Bike, img: 'https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&q=80', d: 'Pedal for the planet through iconic landscapes starting from Lalbagh.', loc: 'Lalbagh Gate', cap: '1500+', price: '₹699' },
-  { t: 'Funathon', tag: 'Fun Run', I: PartyPopper, img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80', d: 'A fun-filled celebration for the whole family at Freedom Park.', loc: 'Freedom Park', cap: '3000+', price: '₹299' },
+  {
+    t: 'EcoMiles',
+    tag: '10K & 5K & 3K',
+    I: Footprints,
+    img: '/images/eco-miles-1.png',
+    d: "Push your limits on Bengaluru's greenest route through Cubbon Park.",
+    loc: 'Cubbon Park',
+    cap: '2000+',
+    price: '₹499',
+  },
+  {
+    t: 'CycleStreet',
+    tag: '5K Ride',
+    I: Bike,
+    img: '/images/cycle-street-1.png',
+    d: 'Pedal for the planet through iconic landscapes starting from Lalbagh.',
+    loc: 'Lalbagh Gate',
+    cap: '1500+',
+    price: '₹699',
+  },
+  {
+    t: 'Funathon',
+    tag: 'Fun Run',
+    I: PartyPopper,
+    img: '/images/events/funathon.jpg',
+    d: 'A fun-filled celebration for the whole family at Freedom Park.',
+    loc: 'Freedom Park',
+    cap: '3000+',
+    price: '₹299',
+  },
 ];
 
 function Events() {
   return (
     <section id="events" className="bg-white py-16 sm:py-20">
       <div className={W}>
-        <Fade><Head ey="Choose Your Challenge" ti="OUR EVENTS" /></Fade>
-        <Stagger className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <Fade>
+          <Head ey="Choose Your Challenge" ti="OUR EVENTS" />
+        </Fade>
+
+        <Stagger className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {EV.map((e) => (
             <StaggerItem key={e.t}>
-              <div className="group bg-white rounded-2xl border border-gray-100 overflow-hidden lift flex flex-col h-full">
-                <div className="relative h-48 overflow-hidden">
-                  <img src={e.img} alt={e.t} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-                  <div className="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 bg-white/95 backdrop-blur rounded-full shadow-sm">
-                    <e.I size={10} className="text-g700" /><span className="text-[9px] font-bold text-g700">{e.tag}</span>
+              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white lift">
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={e.img}
+                    alt={e.t}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  />
+
+                  <div className="absolute top-3 left-3 flex items-center gap-1 rounded-full bg-white/95 px-2.5 py-1 shadow-sm backdrop-blur">
+                    <e.I size={10} className="text-g700" />
+                    <span className="text-[9px] font-bold text-g700">{e.tag}</span>
                   </div>
-                  <div className="absolute top-3 right-3 px-2.5 py-1 bg-g600 text-white text-[10px] font-bold rounded-full shadow-lg">{e.price}</div>
-                  <div className="absolute bottom-3 left-3 right-3 flex gap-3 text-white/80 text-[9px] font-medium">
-                    <span className="flex items-center gap-1"><MapPin size={9} />{e.loc}</span>
-                    <span className="flex items-center gap-1"><Users size={9} />{e.cap}</span>
+
+                  <div className="absolute top-3 right-3 rounded-full bg-g600 px-2.5 py-1 text-[10px] font-bold text-white shadow-lg">
+                    {e.price}
+                  </div>
+
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent px-3 py-3">
+                    <div className="flex flex-wrap gap-3 text-[9px] font-medium text-white/90">
+                      <span className="flex items-center gap-1">
+                        <MapPin size={9} />
+                        {e.loc}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Users size={9} />
+                        {e.cap}
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <div className="p-5 flex flex-col flex-1">
-                  <h3 className="font-head text-2xl text-gray-900 tracking-wide mb-1">{e.t}</h3>
-                  <p className="text-gray-400 text-[11px] leading-relaxed mb-5 flex-1">{e.d}</p>
-                  <a href="#" className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-g600 text-white text-[11px] font-bold hover:bg-g700 transition-all group/b shadow-md shadow-g600/15">
-                    Register Now <ArrowRight size={12} className="group-hover/b:translate-x-1 transition-transform" />
+
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="mb-1 font-head text-2xl tracking-wide text-gray-900">
+                    {e.t}
+                  </h3>
+                  <p className="mb-5 flex-1 text-[11px] leading-relaxed text-gray-500">
+                    {e.d}
+                  </p>
+                  <a
+                    href="#"
+                    className="group/b flex items-center justify-center gap-1.5 rounded-xl bg-g600 py-2.5 text-[11px] font-bold text-white shadow-md shadow-g600/15 transition-all hover:bg-g700"
+                  >
+                    Register Now{' '}
+                    <ArrowRight
+                      size={12}
+                      className="transition-transform group-hover/b:translate-x-1"
+                    />
                   </a>
                 </div>
               </div>
@@ -445,7 +504,7 @@ const PAST_EVENTS_LIST = [
     tag: 'GC · 1st June 2024',
     title: 'Cycle Street',
     desc: 'Over 1,200 cyclists took to the streets of Bengaluru in our flagship Cycle Street edition, raising awareness for urban mobility and clean air.',
-    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
+    img: '/images/cycle-street.png',
     participants: '1,200+',
     edition: '5th Edition',
   },
@@ -454,7 +513,7 @@ const PAST_EVENTS_LIST = [
     tag: 'GC · 1st June 2024',
     title: 'Eco Miles',
     desc: 'Runners crossed the finish line for the planet — 5,000 participants completed the eco-themed marathon across Cubbon Park and MG Road.',
-    img: 'https://images.unsplash.com/photo-1594882645126-14ac19a3b611?w=400&q=80',
+    img: '/images/eco-miles.png',
     participants: '5,000+',
     edition: '4th Edition',
   },
@@ -463,7 +522,7 @@ const PAST_EVENTS_LIST = [
   //   tag: 'GC · 3rd June 2023',
   //   title: 'Green Dash',
   //   desc: 'A high-energy fun run that brought together families, students, and fitness enthusiasts for a greener Bengaluru.',
-  //   img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80',
+  //   img: '/images/past-events/green-dash.png',
   //   participants: '3,500+',
   //   edition: '3rd Edition',
   // },
@@ -481,8 +540,7 @@ function PastEvents() {
   const [active, setActive] = useState(PAST_EVENTS_LIST[0]);
 
   return (
-    <section id="past-events" className="bg-white py-16 sm:py-24 relative overflow-hidden">
-      {/* subtle top divider */}
+    <section id="past-events" className="relative overflow-hidden bg-white py-16 sm:py-24">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-g300/40 to-transparent" />
 
       <div className={W}>
@@ -490,9 +548,7 @@ function PastEvents() {
           <Head ey="A Look Back" ti="PAST EVENTS" />
         </Fade>
 
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-6 items-stretch">
-
-          {/* ── LEFT: event list ── */}
+        <div className="mt-10 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-[1fr_1.15fr]">
           <div className="flex flex-col gap-4">
             {PAST_EVENTS_LIST.map((ev, i) => (
               <motion.div
@@ -500,45 +556,47 @@ function PastEvents() {
                 initial={{ opacity: 0, x: -18 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.45, ease: [.25,.1,.25,1] }}
+                transition={{ delay: i * 0.1, duration: 0.45, ease: [.25, .1, .25, 1] }}
                 onClick={() => setActive(ev)}
-                className={`group flex gap-4 p-4 rounded-2xl border cursor-pointer transition-all duration-300 ${
+                className={`group flex cursor-pointer gap-4 rounded-2xl border p-4 transition-all duration-300 ${
                   active.id === ev.id
                     ? 'border-g300 bg-g50 shadow-md shadow-g200/30'
                     : 'border-gray-100 bg-white hover:border-g200 hover:bg-g50/50 hover:shadow-sm'
                 }`}
               >
-                {/* thumbnail */}
-                <div className="w-24 h-20 sm:w-28 sm:h-[84px] rounded-xl overflow-hidden flex-shrink-0 bg-gray-100">
+                <div className="h-20 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-[#393186] sm:h-[84px] sm:w-28">
                   <img
                     src={ev.img}
                     alt={ev.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="h-full w-full object-contain p-1.5 transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
 
-                {/* text */}
-                <div className="flex flex-col justify-center min-w-0">
-                  <p className="text-[9px] font-bold text-g600 tracking-wider mb-1">{ev.tag}</p>
-                  <h4 className="font-head text-lg text-gray-900 tracking-wide leading-tight mb-1">{ev.title}</h4>
-                  <p className="text-gray-400 text-[10px] leading-relaxed line-clamp-2">{ev.desc}</p>
-                  <div className="flex items-center gap-3 mt-2">
-                    <span className="flex items-center gap-1 text-[9px] text-g700 font-bold">
+                <div className="min-w-0 flex flex-col justify-center">
+                  <p className="mb-1 text-[9px] font-bold tracking-wider text-g600">{ev.tag}</p>
+                  <h4 className="mb-1 font-head text-lg leading-tight tracking-wide text-gray-900">
+                    {ev.title}
+                  </h4>
+                  <p className="line-clamp-2 text-[10px] leading-relaxed text-gray-400">
+                    {ev.desc}
+                  </p>
+                  <div className="mt-2 flex items-center gap-3">
+                    <span className="flex items-center gap-1 text-[9px] font-bold text-g700">
                       <Users size={9} /> {ev.participants}
                     </span>
                     <span className="text-[9px] text-gray-300">·</span>
-                    <span className="text-[9px] text-gray-400 font-medium">{ev.edition}</span>
+                    <span className="text-[9px] font-medium text-gray-400">{ev.edition}</span>
                   </div>
                 </div>
 
-                {/* active indicator */}
-                <div className={`ml-auto flex-shrink-0 self-center w-1.5 h-10 rounded-full transition-all duration-300 ${
-                  active.id === ev.id ? 'bg-g500' : 'bg-transparent'
-                }`} />
+                <div
+                  className={`ml-auto h-10 w-1.5 flex-shrink-0 self-center rounded-full transition-all duration-300 ${
+                    active.id === ev.id ? 'bg-g500' : 'bg-transparent'
+                  }`}
+                />
               </motion.div>
             ))}
 
-            {/* view all link */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -548,89 +606,101 @@ function PastEvents() {
             >
               <a
                 href="#"
-                className="inline-flex items-center gap-1.5 text-g700 text-[11px] font-bold hover:text-g600 transition group"
+                className="group inline-flex items-center gap-1.5 text-[11px] font-bold text-g700 transition hover:text-g600"
               >
                 View all past events
-                <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
               </a>
             </motion.div>
           </div>
 
-          {/* ── RIGHT: featured panel ── */}
           <AnimatePresence mode="wait">
             <motion.div
               key={active.id}
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.38, ease: [.25,.1,.25,1] }}
-              className="relative rounded-2xl overflow-hidden bg-g950 flex flex-col min-h-[420px]"
+              transition={{ duration: 0.38, ease: [.25, .1, .25, 1] }}
+              className="relative flex min-h-[420px] flex-col overflow-hidden rounded-2xl bg-g950"
             >
-              {/* background image with overlay */}
               <div className="absolute inset-0">
-                <img
-                  src={active.img}
-                  alt={active.title}
-                  className="w-full h-full object-cover opacity-30"
-                />
+                <div className="flex h-full w-full items-center justify-center bg-g950">
+                  <img
+                    src={active.img}
+                    alt={active.title}
+                    className="h-full w-full object-contain p-8 opacity-25"
+                  />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-g950 via-g950/80 to-g950/40" />
-                <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(74,222,128,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.03) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(rgba(74,222,128,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.03) 1px,transparent 1px)',
+                    backgroundSize: '32px 32px'
+                  }}
+                />
               </div>
 
-              {/* GC logo badge */}
-              <div className="relative z-10 p-6 pb-0 flex items-start justify-between">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-g400/20 bg-g400/5 backdrop-blur-sm">
-                  <span className="font-head text-[11px] tracking-[0.25em] text-white">GREEN CIRCUIT</span>
+              <div className="relative z-10 flex items-start justify-between p-6 pb-0">
+                <div className="inline-flex items-center gap-2 rounded-lg border border-g400/20 bg-g400/5 px-3 py-1.5 backdrop-blur-sm">
+                  <span className="font-head text-[11px] tracking-[0.25em] text-white">
+                    GREEN CIRCUIT
+                  </span>
                 </div>
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10">
-                  <span className="w-1.5 h-1.5 rounded-full bg-g400" />
-                  <span className="text-[9px] text-white/60 font-bold tracking-wider">PAST EVENT</span>
+                <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2.5 py-1">
+                  <span className="h-1.5 w-1.5 rounded-full bg-g400" />
+                  <span className="text-[9px] font-bold tracking-wider text-white/60">
+                    PAST EVENT
+                  </span>
                 </div>
               </div>
 
-              {/* content */}
-              <div className="relative z-10 flex flex-col flex-1 justify-end p-6">
-                <p className="text-g400 text-[10px] font-bold tracking-wider mb-3">
-                  {/* reuse the active event tag */}
+              <div className="relative z-10 flex flex-1 flex-col justify-end p-6">
+                <p className="mb-3 text-[10px] font-bold tracking-wider text-g400">
                   {active.tag.replace('GC · ', 'GC — ')}
                 </p>
 
-                <h3 className="font-head text-[clamp(1.5rem,3vw,2.2rem)] text-white leading-[1.1] tracking-wide mb-5">
+                <h3 className="mb-5 font-head text-[clamp(1.5rem,3vw,2.2rem)] leading-[1.1] tracking-wide text-white">
                   "Celebrating <span className="text-g400">{active.title}</span> — {active.edition} of the Green Circuit event!"
                 </h3>
 
-                {/* stats row */}
-                <div className="flex flex-wrap gap-3 mb-5">
-                  <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.06] border border-white/10 backdrop-blur-sm">
+                <div className="mb-5 flex flex-wrap gap-3">
+                  <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.06] px-3.5 py-2 backdrop-blur-sm">
                     <Users size={13} className="text-g400" />
                     <div>
-                      <p className="text-[8px] text-white/30 font-bold tracking-wider">PARTICIPANTS</p>
-                      <p className="text-white text-[13px] font-bold leading-none">{active.participants}</p>
+                      <p className="text-[8px] font-bold tracking-wider text-white/30">PARTICIPANTS</p>
+                      <p className="text-[13px] font-bold leading-none text-white">{active.participants}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.06] border border-white/10 backdrop-blur-sm">
+
+                  <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.06] px-3.5 py-2 backdrop-blur-sm">
                     <TreePine size={13} className="text-g400" />
                     <div>
-                      <p className="text-[8px] text-white/30 font-bold tracking-wider">EDITION</p>
-                      <p className="text-white text-[13px] font-bold leading-none">{active.edition}</p>
+                      <p className="text-[8px] font-bold tracking-wider text-white/30">EDITION</p>
+                      <p className="text-[13px] font-bold leading-none text-white">{active.edition}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.06] border border-white/10 backdrop-blur-sm">
+
+                  <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.06] px-3.5 py-2 backdrop-blur-sm">
                     <Trophy size={13} className="text-yellow-400" />
                     <div>
-                      <p className="text-[8px] text-white/30 font-bold tracking-wider">PRIZES GIVEN</p>
-                      <p className="text-white text-[13px] font-bold leading-none">₹1.5L+</p>
+                      <p className="text-[8px] font-bold tracking-wider text-white/30">PRIZES GIVEN</p>
+                      <p className="text-[13px] font-bold leading-none text-white">₹1.5L+</p>
                     </div>
                   </div>
                 </div>
 
-                <p className="text-white/40 text-[11px] leading-relaxed mb-5 max-w-sm">{active.desc}</p>
+                <p className="mb-5 max-w-sm text-[11px] leading-relaxed text-white/40">
+                  {active.desc}
+                </p>
 
                 <a
                   href="#"
-                  className="self-start inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-g500 text-white text-[11px] font-bold hover:bg-g400 transition-all shadow-lg shadow-g500/25 group"
+                  className="group self-start inline-flex items-center gap-1.5 rounded-xl bg-g500 px-5 py-2.5 text-[11px] font-bold text-white shadow-lg shadow-g500/25 transition-all hover:bg-g400"
                 >
-                  View Highlights <ArrowRight size={11} className="group-hover:translate-x-1 transition-transform" />
+                  View Highlights
+                  <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
             </motion.div>
@@ -757,75 +827,299 @@ function CtaBanner() {
 
 /* ═══ SPONSOR TIERS ═══ */
 const FT = [
-  'Title Sponsor', 'Event Sponsor', 'Logo on Certificate', 'Logo on Tickets',
-  'Event Sponsors', 'Logo on Banner', 'Logo on Website', 'Logo on Socials', 'Advertisement', 'Stalls',
-];
-const TI = [
-  { n: 'SILVER', p: '₹50,000', I: Medal, bg: 'bg-gray-400', glow: '', freq: 'Every 1 Hr', cat: 'Corporate', f: [0, 0, 0, 1, 1, 0, 1, 1, 0, 0] },
-  { n: 'GOLD', p: '₹75,000', I: Award, bg: 'bg-yellow-500', glow: 'shadow-yellow-500/10', freq: 'Every 30 Mins', cat: 'Corporate', f: [0, 0, 1, 1, 1, 1, 1, 1, 1, 0] },
-  { n: 'PLATINUM', p: '₹1,00,000', I: Crown, bg: 'bg-cyan-400', glow: 'shadow-cyan-400/20', freq: 'Every 20 Mins', cat: 'Executive', pop: true, f: [0, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
-  { n: 'DIAMOND', p: '₹2,00,000', I: Gem, bg: 'bg-g400', glow: 'shadow-g400/20', freq: 'Every 10 Mins', cat: 'Executive', f: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
-];
+  'Print on Bibs',
+  'Print on Tickets',
+  'Print on Certificates',
+  'Print on GC 26 Arch',
+  'Mention on Website',
+  'BNMIT YouTube+Instagram Page Flashmob',
+  'Mention on the Stage Arch',
+  '20 Mins on Stage',
+  'Mention on Banners - 2K, 5K, 10K',
+  'Stalls',
+  'Coffee Table Book',
+]
 
+// Keep your existing Diamond tier object here exactly as you already had it
+const DIAMOND_TIER = {
+  n: 'DIAMOND',
+  p: '₹2,00,000', // keep/change as per your existing value
+  freq: 'Premium',
+  cat: 'Title Partner',
+  I: Gem, // or your existing icon
+  bg: 'bg-gradient-to-br from-cyan-500 to-blue-600',
+  pop: true, // keep if you want it highlighted
+  f: [
+    true,  // Print on Bibs
+    true,  // Print on Tickets
+    true,  // Print on Certificates
+    true,  // Print on GC 26 Arch
+    true,  // Mention on Website
+    true,  // BNMIT YouTube+Instagram Page Flashmob
+    true,  // Mention on the Stage Arch
+    true,  // 20 Mins on Stage
+    true,  // Mention on Banners - 2K, 5K, 10K
+    1,     // Stalls
+    true,  // Coffee Table Book
+  ],
+}
+
+const TI = [
+  {
+    n: 'DIAMOND',
+    p: '₹2,00,000',
+    freq: 'Premium',
+    cat: 'Title Partner',
+    I: Gem,
+    bg: 'bg-gradient-to-br from-cyan-500 to-blue-600',
+    pop: false,
+    f: [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      1,
+      true,
+    ],
+  },
+  {
+    n: 'PLATINUM',
+    p: '₹1,00,000',
+    freq: 'Top Tier',
+    cat: 'Main Sponsor',
+    I: Crown,
+    bg: 'bg-gradient-to-br from-blue-600 to-indigo-700',
+    pop: true,
+    f: [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      1,
+      true,
+    ],
+  },
+  {
+    n: 'GOLD',
+    p: '₹75,000',
+    freq: 'Gold Tier',
+    cat: 'Event Sponsor',
+    I: Trophy,
+    bg: 'bg-gradient-to-br from-amber-400 to-yellow-600',
+    pop: false,
+    f: [
+      true,
+      false,
+      false,
+      true,
+      true,
+      false,
+      true,
+      false,
+      true,
+      1,
+      true,
+    ],
+  },
+  {
+    n: 'SILVER',
+    p: '₹50,000',
+    freq: 'Silver Tier',
+    cat: 'Supporting Sponsor',
+    I: Shield,
+    bg: 'bg-gradient-to-br from-slate-400 to-gray-600',
+    pop: false,
+    f: [
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      1,
+      true,
+    ],
+  },
+  {
+    n: 'BRONZE',
+    p: '₹25,000',
+    freq: 'Bronze Tier',
+    cat: 'Brand Partner',
+    I: Star,
+    bg: 'bg-gradient-to-br from-orange-500 to-amber-700',
+    pop: false,
+    f: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      1,
+      true,
+    ],
+  },
+  {
+    n: 'ASSOCIATE',
+    p: '₹10,000',
+    freq: 'Associate Tier',
+    cat: 'Community Sponsor',
+    I: Users,
+    bg: 'bg-gradient-to-br from-fuchsia-600 to-violet-700',
+    pop: false,
+    f: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+    ],
+  },
+]
 function SponsorTiers() {
   return (
     <section id="sponsor" className="relative overflow-hidden py-20 sm:py-28 noise">
       <div className="absolute inset-0 bg-gradient-to-b from-g900 via-g950 to-black" />
-      <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(74,222,128,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.03) 1px,transparent 1px)', backgroundSize: '48px 48px' }} />
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(74,222,128,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.03) 1px,transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
       <div className="absolute top-20 left-[15%] h-48 w-48 rounded-full bg-g500/8 blur-[80px] glow-pulse" />
-      <div className="absolute bottom-20 right-[10%] h-64 w-64 rounded-full bg-cyan-500/5 blur-[100px] glow-pulse" style={{ animationDelay: '1.5s' }} />
+      <div
+        className="absolute bottom-20 right-[10%] h-64 w-64 rounded-full bg-cyan-500/5 blur-[100px] glow-pulse"
+        style={{ animationDelay: '1.5s' }}
+      />
 
       <div className={`${W} relative z-10`}>
         <Fade>
           <div className="mb-6 text-center">
             <div className="glass mb-5 inline-flex items-center gap-2 rounded-full px-3 py-1">
               <Sparkles size={10} className="text-g400" />
-              <span className="text-[9px] font-bold tracking-wider text-g400">SPONSORSHIP OPPORTUNITIES</span>
+              <span className="text-[9px] font-bold tracking-wider text-g400">
+                SPONSORSHIP OPPORTUNITIES
+              </span>
             </div>
-            <h2 className="font-head text-[clamp(2.5rem,6vw,4.5rem)] leading-none tracking-wide text-white">BECOME A <span className="shimmer">SPONSOR</span></h2>
-            <p className="mx-auto mt-4 max-w-md text-xs leading-relaxed text-white/25 sm:text-sm">Support sustainability, boost your brand, and engage with 5000+ eco-conscious athletes.</p>
+            <h2 className="font-head text-[clamp(2.5rem,6vw,4.5rem)] leading-none tracking-wide text-white">
+              BECOME A <span className="shimmer">SPONSOR</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-md text-xs leading-relaxed text-white/25 sm:text-sm">
+              Support sustainability, boost your brand, and engage with 5000+ eco-conscious athletes.
+            </p>
           </div>
         </Fade>
+
         <Fade d={0.1}>
           <div className="mb-12 flex justify-center">
             <div className="glass inline-flex items-center gap-3 rounded-full px-5 py-2.5">
-              <Heart className="float h-4 w-4 text-g400" />
-              <span className="text-[10px] font-bold text-white/50">Join us in creating a <span className="text-g400">greener future</span></span>
+              <Heart className=" h-4 w-4 text-g400" />
+              <span className="text-[10px] font-bold text-white/50">
+                Join us in creating a <span className="text-g400">greener future</span>
+              </span>
             </div>
           </div>
         </Fade>
-        <Stagger className="grid items-stretch gap-6 pt-6 sm:grid-cols-2 xl:grid-cols-4">
+
+        <Stagger className="grid items-stretch gap-6 pt-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6">
           {TI.map((t) => (
             <StaggerItem key={t.n} className="h-full">
               <div className="relative h-full">
                 {t.pop && (
                   <div className="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1/2">
-                    <div className="flex items-center gap-1 rounded-full bg-g500 px-4 py-1 text-[8px] font-bold tracking-wider text-white shadow-lg shadow-g500/30"><Sparkles size={8} />MOST POPULAR</div>
+                    <div className="flex items-center gap-1 rounded-full bg-g500 px-4 py-1 text-[8px] font-bold tracking-wider text-white shadow-lg shadow-g500/30">
+                      <Sparkles size={8} />
+                      MOST POPULAR
+                    </div>
                   </div>
                 )}
-                <div className={`relative flex h-full flex-col rounded-2xl overflow-hidden border transition-all duration-300 ${t.pop ? 'border-g400 bg-gradient-to-b from-white to-g50 shadow-2xl shadow-g400/15' : 'border-white/10 bg-white shadow-xl hover:-translate-y-1 hover:shadow-2xl'}`}>
-                  {t.pop && <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-g400 via-g500 to-g400" />}
+
+                <div
+                  className={`relative flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-300 ${
+                    t.pop
+                      ? 'border-g400 bg-gradient-to-b from-white to-g50 shadow-2xl shadow-g400/15'
+                      : 'border-white/10 bg-white shadow-xl hover:-translate-y-1 hover:shadow-2xl'
+                  }`}
+                >
+                  {t.pop && (
+                    <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-g400 via-g500 to-g400" />
+                  )}
+
                   <div className="flex flex-1 flex-col p-5">
                     <div className="mb-5 pt-3 text-center">
-                      <div className={`mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl ${t.bg} shadow-lg`}><t.I className="h-5 w-5 text-white" /></div>
+                      <div className={`mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl ${t.bg} shadow-lg`}>
+                        <t.I className="h-5 w-5 text-white" />
+                      </div>
                       <h3 className="font-head text-xl tracking-wider text-gray-900">{t.n}</h3>
                       <p className="font-head mt-1 text-[1.7rem] leading-none text-g700">{t.p}</p>
-                      <p className="mt-1.5 text-[8px] font-medium text-gray-400">{t.freq} · {t.cat}</p>
+                      <p className="mt-1.5 text-[8px] font-medium text-gray-400">
+                        {t.freq} · {t.cat}
+                      </p>
                     </div>
+
                     <div className="mb-4 h-px w-full bg-gray-100" />
+
                     <div className="mb-6 flex-1 space-y-2">
-                      {FT.map((f, j) => (
-                        <div key={f} className="flex items-center gap-2 text-[10px]">
-                          {t.f[j] ? (
-                            <div className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-g500/10"><Check size={8} className="text-g600" /></div>
-                          ) : (
-                            <div className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-gray-50"><span className="text-[7px] text-gray-200">✕</span></div>
-                          )}
-                          <span className={t.f[j] ? 'font-medium text-gray-600' : 'text-gray-200'}>{f}</span>
-                        </div>
-                      ))}
+                      {FT.map((f, j) => {
+                        const value = t.f[j]
+                        const isAvailable = value === true || typeof value === 'number'
+
+                        return (
+                          <div key={f} className="flex items-center gap-2 text-[10px]">
+                            {typeof value === 'number' ? (
+                              <div className="flex h-5 min-w-[20px] flex-shrink-0 items-center justify-center rounded-full bg-g500/10 px-1">
+                                <span className="text-[8px] font-bold text-g700">{value}</span>
+                              </div>
+                            ) : isAvailable ? (
+                              <div className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-g500/10">
+                                <Check size={8} className="text-g600" />
+                              </div>
+                            ) : (
+                              <div className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-gray-50">
+                                <span className="text-[7px] text-gray-200">✕</span>
+                              </div>
+                            )}
+
+                            <span className={isAvailable ? 'font-medium text-gray-600' : 'text-gray-200'}>
+                              {f}
+                            </span>
+                          </div>
+                        )
+                      })}
                     </div>
-                    <a href="#" className={`mt-auto w-full rounded-xl py-3 text-center text-[11px] font-bold transition-all duration-300 ${t.pop ? 'breathe bg-g600 text-white shadow-lg shadow-g600/20 hover:bg-g700' : 'border-2 border-g600 text-g700 hover:bg-g600 hover:text-white hover:shadow-lg'}`}>
+
+                    <a
+                      href="#"
+                      className={`mt-auto w-full rounded-xl py-3 text-center text-[11px] font-bold transition-all duration-300 ${
+                        t.pop
+                          ? 'breathe bg-g600 text-white shadow-lg shadow-g600/20 hover:bg-g700'
+                          : 'border-2 border-g600 text-g700 hover:bg-g600 hover:text-white hover:shadow-lg'
+                      }`}
+                    >
                       Join as Sponsor <ArrowRight size={11} className="ml-1 inline" />
                     </a>
                   </div>
@@ -834,17 +1128,21 @@ function SponsorTiers() {
             </StaggerItem>
           ))}
         </Stagger>
+
         <Fade d={0.3}>
           <div className="mt-12 text-center">
             <p className="mb-3 text-[10px] text-white">Need a custom package?</p>
-            <a href="mailto:info@greencircuit.in" className="group inline-flex items-center gap-1.5 text-xs font-bold text-g400 transition hover:text-g300">
+            <a
+              href="mailto:info@greencircuit.in"
+              className="group inline-flex items-center gap-1.5 text-xs font-bold text-g400 transition hover:text-g300"
+            >
               Contact us <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         </Fade>
       </div>
     </section>
-  );
+  )
 }
 
 /* ═══ FAQ ═══ */
