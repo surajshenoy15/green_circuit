@@ -1007,7 +1007,7 @@ function SponsorTiers() {
         style={{
           backgroundImage:
             'linear-gradient(rgba(74,222,128,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.03) 1px,transparent 1px)',
-          backgroundSize: '48px 48px',
+          backgroundSize: '48px 48px'
         }}
       />
       <div className="absolute top-20 left-[15%] h-48 w-48 rounded-full bg-g500/8 blur-[80px] glow-pulse" />
@@ -1037,7 +1037,7 @@ function SponsorTiers() {
         <Fade d={0.1}>
           <div className="mb-12 flex justify-center">
             <div className="glass inline-flex items-center gap-3 rounded-full px-5 py-2.5">
-              <Heart className=" h-4 w-4 text-g400" />
+              <Heart className="float h-4 w-4 text-g400" />
               <span className="text-[10px] font-bold text-white/50">
                 Join us in creating a <span className="text-g400">greener future</span>
               </span>
@@ -1045,7 +1045,7 @@ function SponsorTiers() {
           </div>
         </Fade>
 
-        <Stagger className="grid items-stretch gap-6 pt-6 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6">
+        <Stagger className="grid items-stretch gap-5 pt-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6">
           {TI.map((t) => (
             <StaggerItem key={t.n} className="h-full">
               <div className="relative h-full">
@@ -1069,37 +1069,46 @@ function SponsorTiers() {
                     <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-g400 via-g500 to-g400" />
                   )}
 
-                  <div className="flex flex-1 flex-col p-5">
-                    <div className="mb-5 pt-3 text-center">
-                      <div className={`mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl ${t.bg} shadow-lg`}>
+                  <div className="flex flex-1 flex-col p-4 sm:p-5">
+                    <div className="mb-4 pt-3 text-center">
+                      <div
+                        className={`mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl ${t.bg} shadow-lg`}
+                      >
                         <t.I className="h-5 w-5 text-white" />
                       </div>
-                      <h3 className="font-head text-xl tracking-wider text-gray-900">{t.n}</h3>
-                      <p className="font-head mt-1 text-[1.7rem] leading-none text-g700">{t.p}</p>
-                      <p className="mt-1.5 text-[8px] font-medium text-gray-400">
+
+                      <h3 className="font-head text-lg sm:text-xl tracking-wider text-gray-900">
+                        {t.n}
+                      </h3>
+
+                      <p className="font-head mt-1 text-[1.9rem] sm:text-[2rem] leading-none text-g700">
+                        {t.p}
+                      </p>
+
+                      <p className="mt-1.5 text-[9px] font-medium leading-snug text-gray-400">
                         {t.freq} · {t.cat}
                       </p>
                     </div>
 
                     <div className="mb-4 h-px w-full bg-gray-100" />
 
-                    <div className="mb-6 flex-1 space-y-2">
+                    <div className="mb-5 flex-1 space-y-2.5">
                       {FT.map((f, j) => {
-                        const value = t.f[j]
-                        const isAvailable = value === true || typeof value === 'number'
+                        const value = t.f[j];
+                        const isAvailable = value === true || typeof value === 'number';
 
                         return (
-                          <div key={f} className="flex items-center gap-2 text-[10px]">
+                          <div key={f} className="flex items-start gap-2 text-[11px] leading-snug">
                             {typeof value === 'number' ? (
-                              <div className="flex h-5 min-w-[20px] flex-shrink-0 items-center justify-center rounded-full bg-g500/10 px-1">
+                              <div className="mt-0.5 flex h-5 min-w-[20px] flex-shrink-0 items-center justify-center rounded-full bg-g500/10 px-1">
                                 <span className="text-[8px] font-bold text-g700">{value}</span>
                               </div>
                             ) : isAvailable ? (
-                              <div className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-g500/10">
+                              <div className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-g500/10">
                                 <Check size={8} className="text-g600" />
                               </div>
                             ) : (
-                              <div className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-gray-50">
+                              <div className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-gray-50">
                                 <span className="text-[7px] text-gray-200">✕</span>
                               </div>
                             )}
@@ -1108,13 +1117,13 @@ function SponsorTiers() {
                               {f}
                             </span>
                           </div>
-                        )
+                        );
                       })}
                     </div>
 
                     <a
                       href="#"
-                      className={`mt-auto w-full rounded-xl py-3 text-center text-[11px] font-bold transition-all duration-300 ${
+                      className={`mt-auto w-full rounded-xl py-2.5 text-center text-[11px] font-bold transition-all duration-300 ${
                         t.pop
                           ? 'breathe bg-g600 text-white shadow-lg shadow-g600/20 hover:bg-g700'
                           : 'border-2 border-g600 text-g700 hover:bg-g600 hover:text-white hover:shadow-lg'
@@ -1136,13 +1145,14 @@ function SponsorTiers() {
               href="mailto:info@greencircuit.in"
               className="group inline-flex items-center gap-1.5 text-xs font-bold text-g400 transition hover:text-g300"
             >
-              Contact us <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
+              Contact us{' '}
+              <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         </Fade>
       </div>
     </section>
-  )
+  );
 }
 
 /* ═══ FAQ ═══ */
