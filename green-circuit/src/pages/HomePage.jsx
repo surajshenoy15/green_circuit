@@ -834,30 +834,6 @@ const FT = [
   'Powered by Title',
 ]
 
-const DIAMOND_TIER = {
-  n: 'DIAMOND',
-  p: '₹2,00,000',
-  freq: 'Premium',
-  cat: 'Title Partner',
-  I: Gem,
-  bg: 'bg-gradient-to-br from-cyan-500 to-blue-600',
-  pop: true,
-  f: [
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    true,
-    '1 Stall (10 ft × 20 ft)',
-    true,
-    true,
-  ],
-}
-
 const TI = [
   {
     n: 'DIAMOND',
@@ -867,6 +843,7 @@ const TI = [
     I: Gem,
     bg: 'bg-gradient-to-br from-cyan-500 to-blue-600',
     pop: false,
+    wa: 'https://wa.link/sz88e6',
     f: [
       true,
       true,
@@ -890,6 +867,7 @@ const TI = [
     I: Crown,
     bg: 'bg-gradient-to-br from-blue-600 to-indigo-700',
     pop: true,
+    wa: 'https://wa.link/2ncnxx',
     f: [
       true,
       true,
@@ -913,6 +891,7 @@ const TI = [
     I: Trophy,
     bg: 'bg-gradient-to-br from-amber-400 to-yellow-600',
     pop: false,
+    wa: 'https://wa.link/lhkvij',
     f: [
       true,
       false,
@@ -936,6 +915,7 @@ const TI = [
     I: Shield,
     bg: 'bg-gradient-to-br from-slate-400 to-gray-600',
     pop: false,
+    wa: 'https://wa.link/x6r46h',
     f: [
       true,
       false,
@@ -959,6 +939,7 @@ const TI = [
     I: Star,
     bg: 'bg-gradient-to-br from-orange-500 to-amber-700',
     pop: false,
+    wa: 'https://wa.link/43van4',
     f: [
       false,
       false,
@@ -982,6 +963,7 @@ const TI = [
     I: Users,
     bg: 'bg-gradient-to-br from-fuchsia-600 to-violet-700',
     pop: false,
+    wa: 'https://wa.link/nc38oi',
     f: [
       false,
       false,
@@ -1128,7 +1110,9 @@ function SponsorTiers() {
                     </div>
 
                     <a
-                      href="#"
+                      href={t.wa}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`mt-auto w-full rounded-xl py-2.5 text-center text-[11px] font-bold transition-all duration-300 ${
                         t.pop
                           ? 'breathe bg-g600 text-white shadow-lg shadow-g600/20 hover:bg-g700'
