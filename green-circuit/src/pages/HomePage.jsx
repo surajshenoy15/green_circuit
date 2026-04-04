@@ -25,7 +25,7 @@ function Marquee({ items, dir = 'l', bg = 'bg-g700', speed = '25s' }) {
 /* ═══ NAVBAR ═══ */
 const NAV = [['Events', '#events'], ['Impact', '#impact'], ['Sponsors', '#sponsors'], ['Past Events', '#past-events'], ['FAQ', '#faq']];
 
-function Navbar() {
+export function Navbar() {
   const [s, setS] = useState(false);
   const [m, setM] = useState(false);
 
@@ -48,12 +48,9 @@ function Navbar() {
             alt="Green Circuit"
             className="h-7 sm:h-8 w-auto object-contain shrink-0"
           />
-          <span
-            className={`flex items-center leading-none font-head text-base sm:text-lg tracking-wider transition-colors duration-300 ${
-              s ? 'text-gray-900' : 'text-white'
-            }`}
-          >
-            GREEN <span className={s ? 'text-g700' : 'text-g400'} ml-1>CIRCUIT</span>
+          <span className="flex items-center leading-none font-head text-base sm:text-lg tracking-wider transition-colors duration-300">
+            <span className={s ? 'text-[#59B94A]' : 'text-white'}>GREEN</span>
+            <span className={`ml-1 ${s ? 'text-[#332F91]' : 'text-g400'}`}>CIRCUIT</span>
           </span>
         </a>
 
@@ -79,7 +76,10 @@ function Navbar() {
           </a>
         </div>
 
-        <button onClick={() => setM(!m)} className={`md:hidden ${s ? 'text-gray-800' : 'text-white'}`}>
+        <button
+          onClick={() => setM(!m)}
+          className={`md:hidden ${s ? 'text-gray-800' : 'text-white'}`}
+        >
           {m ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
@@ -291,7 +291,7 @@ function Hero() {
             </span>
             <span className="flex items-center gap-1.5">
               <MapPin size={10} className="text-g400" />
-              Bengaluru
+              National College Ground,Basavanagudi
             </span>
             <span className="flex items-center gap-1.5">
               <Users size={10} className="text-g400" />
@@ -312,9 +312,9 @@ const EV = [
     I: Footprints,
     img: '/images/eco-miles-1.png',
     d: "Push your limits on Bengaluru's greenest route through Cubbon Park.",
-    loc: 'Cubbon Park',
-    cap: '2000+',
-    price: '₹499',
+    loc: 'National College Ground,Basavanagudi',
+    cap: '8000+',
+    price: '',
   },
   {
     t: 'CycleStreet',
@@ -322,19 +322,19 @@ const EV = [
     I: Bike,
     img: '/images/cycle-street-1.png',
     d: 'Pedal for the planet through iconic landscapes starting from Lalbagh.',
-    loc: 'Lalbagh Gate',
-    cap: '1500+',
-    price: '₹699',
+    loc: 'National College Ground,Basavanagudi',
+    cap: '3000+',
+    price: '',
   },
   {
     t: 'Funathon',
     tag: 'Fun Run',
     I: PartyPopper,
-    img: '/images/events/funathon.jpg',
+    img: '/images/funathon.png',
     d: 'A fun-filled celebration for the whole family at Freedom Park.',
-    loc: 'Freedom Park',
-    cap: '3000+',
-    price: '₹299',
+    loc: 'National College Ground,Basavanagudi',
+    cap: '2000+',
+    price: '',
   },
 ];
 
@@ -413,7 +413,7 @@ function Ctr({ to, pre = '', suf = '' }) {
   useEffect(() => { if (!v) return; let c = 0; const s = Math.max(1, Math.floor(to / 80)); const id = setInterval(() => { c += s; if (c >= to) { setN(to); clearInterval(id); } else setN(c); }, 16); return () => clearInterval(id); }, [v, to]);
   return <span ref={r} className="font-head text-4xl sm:text-5xl text-g400 tabular-nums" style={{ textShadow: '0 0 20px rgba(74,222,128,.2)' }}>{pre}{n.toLocaleString()}{suf}</span>;
 }
-const ST = [{ I: Users, v: 15000, s: '+', l: 'Participants' }, { I: TreePine, v: 5000, s: '+', l: 'Trees Planted' }, { I: Bike, v: 50, s: '+', l: 'Events' }, { I: Award, v: 10, s: 'L+', p: '₹', l: 'Prizes' }];
+const ST = [{ I: Users, v: 10000, s: '+', l: 'Participants' }, { I: TreePine, v: 5000, s: '+', l: 'Trees Planted' }, { I: Bike, v: 50, s: '+', l: 'Events' }, { I: Award, v: 2, s: 'L', p: '₹', l: 'Prizes' }];
 
 function Impact() {
   return (
@@ -501,6 +501,7 @@ function Sponsors() {
 const PAST_EVENTS_LIST = [
   {
     id: 1,
+    slug: 'cycle-street',
     tag: 'GC · 1st June 2024',
     title: 'Cycle Street',
     desc: 'Over 1,200 cyclists took to the streets of Bengaluru in our flagship Cycle Street edition, raising awareness for urban mobility and clean air.',
@@ -510,6 +511,7 @@ const PAST_EVENTS_LIST = [
   },
   {
     id: 2,
+    slug: 'eco-miles',
     tag: 'GC · 1st June 2024',
     title: 'Eco Miles',
     desc: 'Runners crossed the finish line for the planet — 5,000 participants completed the eco-themed marathon across Cubbon Park and MG Road.',
@@ -517,15 +519,6 @@ const PAST_EVENTS_LIST = [
     participants: '5,000+',
     edition: '4th Edition',
   },
-  // {
-  //   id: 3,
-  //   tag: 'GC · 3rd June 2023',
-  //   title: 'Green Dash',
-  //   desc: 'A high-energy fun run that brought together families, students, and fitness enthusiasts for a greener Bengaluru.',
-  //   img: '/images/past-events/green-dash.png',
-  //   participants: '3,500+',
-  //   edition: '3rd Edition',
-  // },
 ];
 
 const FEATURED_PAST = {
@@ -608,8 +601,7 @@ function PastEvents() {
                 href="#"
                 className="group inline-flex items-center gap-1.5 text-[11px] font-bold text-g700 transition hover:text-g600"
               >
-                View all past events
-                <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
+                {/* View all past events */}
               </a>
             </motion.div>
           </div>
@@ -637,7 +629,7 @@ function PastEvents() {
                   style={{
                     backgroundImage:
                       'linear-gradient(rgba(74,222,128,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.03) 1px,transparent 1px)',
-                    backgroundSize: '32px 32px'
+                    backgroundSize: '32px 32px',
                   }}
                 />
               </div>
@@ -696,8 +688,8 @@ function PastEvents() {
                 </p>
 
                 <a
-                  href="#"
-                  className="group self-start inline-flex items-center gap-1.5 rounded-xl bg-g500 px-5 py-2.5 text-[11px] font-bold text-white shadow-lg shadow-g500/25 transition-all hover:bg-g400"
+                  href={`/past-events/${active.slug}`}
+                  className="group inline-flex self-start items-center gap-1.5 rounded-xl bg-g500 px-5 py-2.5 text-[11px] font-bold text-white shadow-lg shadow-g500/25 transition-all hover:bg-g400"
                 >
                   View Highlights
                   <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
@@ -832,35 +824,36 @@ const FT = [
   'Print on Certificates',
   'Print on GC 26 Arch',
   'Mention on Website',
-  'BNMIT YouTube+Instagram Page Flashmob',
+  'YouTube+Instagram Page Flashmob',
   'Mention on the Stage Arch',
-  '20 Mins on Stage',
+  '3 exclusive stage feature slots (20 minutes each)',
   'Mention on Banners - 2K, 5K, 10K',
-  'Stalls',
+  'Exhibition Stall',
   'Coffee Table Book',
+  'Powered by Title',
 ]
 
-// Keep your existing Diamond tier object here exactly as you already had it
 const DIAMOND_TIER = {
   n: 'DIAMOND',
-  p: '₹2,00,000', // keep/change as per your existing value
+  p: '₹2,00,000',
   freq: 'Premium',
   cat: 'Title Partner',
-  I: Gem, // or your existing icon
+  I: Gem,
   bg: 'bg-gradient-to-br from-cyan-500 to-blue-600',
-  pop: true, // keep if you want it highlighted
+  pop: true,
   f: [
-    true,  // Print on Bibs
-    true,  // Print on Tickets
-    true,  // Print on Certificates
-    true,  // Print on GC 26 Arch
-    true,  // Mention on Website
-    true,  // BNMIT YouTube+Instagram Page Flashmob
-    true,  // Mention on the Stage Arch
-    true,  // 20 Mins on Stage
-    true,  // Mention on Banners - 2K, 5K, 10K
-    1,     // Stalls
-    true,  // Coffee Table Book
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    '1 Stall (10 ft × 20 ft)',
+    true,
+    true,
   ],
 }
 
@@ -883,7 +876,8 @@ const TI = [
       true,
       true,
       true,
-      1,
+      '1 Stall (10 ft × 20 ft)',
+      true,
       true,
     ],
   },
@@ -905,8 +899,9 @@ const TI = [
       true,
       true,
       true,
-      1,
+      '1 Stall (10 ft × 10 ft)',
       true,
+      false,
     ],
   },
   {
@@ -927,8 +922,9 @@ const TI = [
       true,
       false,
       true,
-      1,
+      '1 Stall',
       true,
+      false,
     ],
   },
   {
@@ -949,8 +945,9 @@ const TI = [
       true,
       false,
       true,
-      1,
+      '1 Stall',
       true,
+      false,
     ],
   },
   {
@@ -971,8 +968,9 @@ const TI = [
       false,
       false,
       true,
-      1,
+      '1 Stall',
       true,
+      false,
     ],
   },
   {
@@ -995,9 +993,11 @@ const TI = [
       false,
       false,
       true,
+      false,
     ],
   },
 ]
+
 function SponsorTiers() {
   return (
     <section id="sponsor" className="relative overflow-hidden py-20 sm:py-28 noise">
@@ -1007,7 +1007,7 @@ function SponsorTiers() {
         style={{
           backgroundImage:
             'linear-gradient(rgba(74,222,128,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.03) 1px,transparent 1px)',
-          backgroundSize: '48px 48px'
+          backgroundSize: '48px 48px',
         }}
       />
       <div className="absolute top-20 left-[15%] h-48 w-48 rounded-full bg-g500/8 blur-[80px] glow-pulse" />
@@ -1037,7 +1037,7 @@ function SponsorTiers() {
         <Fade d={0.1}>
           <div className="mb-12 flex justify-center">
             <div className="glass inline-flex items-center gap-3 rounded-full px-5 py-2.5">
-              <Heart className=" h-4 w-4 text-g400" />
+              <Heart className="h-4 w-4 text-g400" />
               <span className="text-[10px] font-bold text-white/50">
                 Join us in creating a <span className="text-g400">greener future</span>
               </span>
@@ -1077,11 +1077,11 @@ function SponsorTiers() {
                         <t.I className="h-5 w-5 text-white" />
                       </div>
 
-                      <h3 className="font-head text-lg sm:text-xl tracking-wider text-gray-900">
+                      <h3 className="font-head text-lg tracking-wider text-gray-900 sm:text-xl">
                         {t.n}
                       </h3>
 
-                      <p className="font-head mt-1 text-[1.9rem] sm:text-[2rem] leading-none text-g700">
+                      <p className="font-head mt-1 text-[1.9rem] leading-none text-g700 sm:text-[2rem]">
                         {t.p}
                       </p>
 
@@ -1095,26 +1095,31 @@ function SponsorTiers() {
                     <div className="mb-5 flex-1 space-y-2.5">
                       {FT.map((f, j) => {
                         const value = t.f[j];
-                        const isAvailable = value === true || typeof value === 'number';
+                        const isAvailable =
+                          value === true ||
+                          typeof value === 'number' ||
+                          typeof value === 'string';
 
                         return (
                           <div key={f} className="flex items-start gap-2 text-[11px] leading-snug">
-                            {typeof value === 'number' ? (
-                              <div className="mt-0.5 flex h-5 min-w-[20px] flex-shrink-0 items-center justify-center rounded-full bg-g500/10 px-1">
-                                <span className="text-[8px] font-bold text-g700">{value}</span>
-                              </div>
-                            ) : isAvailable ? (
-                              <div className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-g500/10">
+                            <div
+                              className={`mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full ${
+                                isAvailable ? 'bg-g500/10' : 'bg-gray-50'
+                              }`}
+                            >
+                              {isAvailable ? (
                                 <Check size={8} className="text-g600" />
-                              </div>
-                            ) : (
-                              <div className="mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-gray-50">
+                              ) : (
                                 <span className="text-[7px] text-gray-200">✕</span>
-                              </div>
-                            )}
+                              )}
+                            </div>
 
                             <span className={isAvailable ? 'font-medium text-gray-600' : 'text-gray-200'}>
-                              {f}
+                              {typeof value === 'string'
+                                ? value
+                                : typeof value === 'number'
+                                ? `${value} ${f}`
+                                : f}
                             </span>
                           </div>
                         );
@@ -1154,7 +1159,6 @@ function SponsorTiers() {
     </section>
   );
 }
-
 /* ═══ FAQ ═══ */
 const QA = [
   { q: 'What is Green Circuit?', a: 'Bengaluru\'s biggest eco-sports event — marathon, cycling, and fun run combined for a greener future. Over 5000+ participants expected.' },
@@ -1167,56 +1171,121 @@ const QA = [
 
 function Faq() {
   const [o, setO] = useState(0);
+
   return (
-    <section id="faq" className="bg-g900 py-20 sm:py-24 relative overflow-hidden">
+    <section id="faq" className="relative overflow-hidden bg-g900 py-20 sm:py-24">
       <div className="absolute inset-0 noise" />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-g400/15 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-g700/10 rounded-full blur-[120px]" />
-      <div className="max-w-[640px] mx-auto px-5 relative z-10">
-        <Fade>
-          <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass mb-5">
-              <span className="text-g400 text-[9px] font-bold tracking-wider">NEED HELP?</span>
-            </div>
-            <h2 className="font-head text-[clamp(2.5rem,5vw,3.5rem)] text-white leading-none tracking-wide">FREQUENTLY ASKED<br /><span className="shimmer">QUESTIONS</span></h2>
-          </div>
-        </Fade>
-        <Stagger className="flex flex-col gap-3">
-          {QA.map((q, i) => (
-            <StaggerItem key={i}>
-              <div className={`rounded-2xl overflow-hidden transition-all duration-400 ${o === i ? 'bg-g800/80 backdrop-blur-md border border-g400/20 shadow-lg shadow-g400/5' : 'bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] hover:border-white/[0.1] hover:bg-white/[0.05]'}`}>
-                <button onClick={() => setO(o === i ? -1 : i)} className="w-full flex items-center justify-between p-5 text-left group">
-                  <div className="flex items-center gap-3 pr-4">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 ${o === i ? 'bg-g500 shadow-md shadow-g500/30' : 'bg-white/[0.05]'}`}>
-                      <span className={`font-head text-sm ${o === i ? 'text-white' : 'text-white/30'}`}>{String(i + 1).padStart(2, '0')}</span>
-                    </div>
-                    <span className={`text-[13px] sm:text-sm font-semibold transition-colors duration-300 ${o === i ? 'text-g400' : 'text-white/70 group-hover:text-white/90'}`}>{q.q}</span>
-                  </div>
-                  <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 ${o === i ? 'bg-g400/15 rotate-180' : 'bg-white/[0.05]'}`}>
-                    <ChevronDown size={14} className={o === i ? 'text-g400' : 'text-white/20'} />
-                  </div>
-                </button>
-                <AnimatePresence>
-                  {o === i && (
-                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: [.25,.1,.25,1] }}>
-                      <div className="px-5 pb-5 pl-16">
-                        <p className="text-white/40 text-[12px] sm:text-[13px] leading-relaxed">{q.a}</p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+      <div className="absolute left-[8%] top-24 h-52 w-52 rounded-full bg-g500/10 blur-[100px]" />
+      <div className="absolute bottom-10 right-[8%] h-64 w-64 rounded-full bg-g700/10 blur-[120px]" />
+
+      <div className={`${W} relative z-10`}>
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
+          <Fade>
+            <div className="lg:sticky lg:top-24 self-start">
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full glass px-3 py-1">
+                <span className="text-[9px] font-bold tracking-wider text-g400">NEED HELP?</span>
               </div>
-            </StaggerItem>
-          ))}
-        </Stagger>
-        <Fade d={0.2}>
-          <div className="text-center mt-10">
-            <p className="text-white/50 text-[11px] mb-2">Still have questions?</p>
-            <a href="mailto:info@greencircuit.in" className="inline-flex items-center gap-1.5 text-g400 text-xs font-bold hover:text-g300 transition group">
-              <Mail size={12} /> Email us <ArrowRight size={10} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-        </Fade>
+
+              <h2 className="font-head text-[clamp(2.5rem,5vw,4rem)] leading-none tracking-wide text-white">
+                FREQUENTLY ASKED
+                <br />
+                <span className="shimmer">QUESTIONS</span>
+              </h2>
+
+              <p className="mt-5 max-w-md text-sm leading-relaxed text-white/45">
+                Everything you need to know about Green Circuit — registration, eligibility, venue details, and what you get on event day.
+              </p>
+
+              <div className="mt-8 rounded-2xl border border-white/[0.08] bg-white/[0.04] p-5 backdrop-blur-sm">
+                <p className="text-[10px] font-bold tracking-[0.2em] text-g400">STILL NEED HELP?</p>
+                <p className="mt-2 text-sm leading-relaxed text-white/45">
+                  Reach out to our team and we’ll help you with registration, sponsorship, or participant queries.
+                </p>
+
+                <a
+                  href="mailto:info@greencircuit.in"
+                  className="group mt-5 inline-flex items-center gap-2 rounded-xl bg-g500 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-g400"
+                >
+                  <Mail size={13} />
+                  Contact Support
+                  <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
+                </a>
+              </div>
+            </div>
+          </Fade>
+
+          <Stagger className="flex flex-col gap-4">
+            {QA.map((q, i) => (
+              <StaggerItem key={i}>
+                <div
+                  className={`overflow-hidden rounded-2xl border transition-all duration-300 ${
+                    o === i
+                      ? 'border-g400/20 bg-g800/80 shadow-lg shadow-g400/5'
+                      : 'border-white/[0.06] bg-white/[0.03] hover:border-white/[0.1] hover:bg-white/[0.05]'
+                  }`}
+                >
+                  <button
+                    onClick={() => setO(o === i ? -1 : i)}
+                    className="group flex w-full items-start justify-between gap-4 p-5 text-left sm:p-6"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div
+                        className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
+                          o === i ? 'bg-g500 shadow-md shadow-g500/25' : 'bg-white/[0.05]'
+                        }`}
+                      >
+                        <span className={`font-head text-sm ${o === i ? 'text-white' : 'text-white/35'}`}>
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                      </div>
+
+                      <div>
+                        <h3
+                          className={`text-sm font-semibold leading-snug transition-colors duration-300 sm:text-[15px] ${
+                            o === i ? 'text-g400' : 'text-white/80 group-hover:text-white'
+                          }`}
+                        >
+                          {q.q}
+                        </h3>
+
+                        <p className="mt-1 text-[11px] text-white/25">
+                          Click to {o === i ? 'collapse' : 'expand'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div
+                      className={`mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 ${
+                        o === i ? 'rotate-180 bg-g400/15' : 'bg-white/[0.05]'
+                      }`}
+                    >
+                      <ChevronDown size={15} className={o === i ? 'text-g400' : 'text-white/25'} />
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {o === i && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.32, ease: [.25, .1, .25, 1] }}
+                      >
+                        <div className="px-5 pb-5 pl-[76px] pr-5 sm:px-6 sm:pb-6 sm:pl-[88px]">
+                          <div className="h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent mb-4" />
+                          <p className="text-[12px] leading-relaxed text-white/50 sm:text-[13px]">
+                            {q.a}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </div>
       </div>
     </section>
   );
@@ -1229,7 +1298,7 @@ const SOCIALS = [
   { name: 'YouTube', href: '#', icon: '/images/linkedin-1.png' },
 ];
 
-function Footer() {
+export function Footer() {
   return (
     <footer className="bg-g950 relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-g400/15 to-transparent" />
@@ -1303,7 +1372,7 @@ function Footer() {
           <div>
             <h4 className="font-head text-base text-white tracking-wider mb-4">EVENTS</h4>
             <div className="flex flex-col gap-2.5">
-              {['Marathon — 10K & 5K', 'Cyclotron — 30K Ride', 'Funathon — Fun Run'].map((l) => (
+              {['EcoMiles — 10K & 5K & 3K', 'CycleStreet — 5K Ride', 'Funathon — Fun Run'].map((l) => (
                 <a key={l} href="#events" className="text-white/40 text-sm hover:text-g400 transition-colors">
                   {l}
                 </a>
@@ -1334,11 +1403,11 @@ function Footer() {
               </a>
 
               <a
-                href="tel:+919876543210"
+                href="tel:+91 8123452323"
                 className="text-white/40 text-sm flex items-center gap-2.5 hover:text-g400 transition-colors"
               >
                 <Phone size={14} className="text-g400/60 flex-shrink-0" />
-                +91 98765 43210
+                +91 8123452323
               </a>
 
               <span className="text-white/40 text-sm flex items-center gap-2.5">
@@ -1367,7 +1436,7 @@ function Footer() {
 }
 
 /* ═══ HOME PAGE ═══ */
-const M1 = [' MARATHON', ' CYCLOTRON', 'FUNATHON', ' ₹2L PRIZE POOL', ' BENGALURU', ' JUNE 1, 2025', ' 5000+ RUNNERS', ' GO GREEN', ' LIMITED SPOTS'];
+const M1 = [' MARATHON', ' CYCLOTRON', 'FUNATHON', ' ₹2L PRIZE POOL', ' BENGALURU', ' JUNE 14, 2025', ' 5000+ RUNNERS', ' GO GREEN', ' LIMITED SPOTS'];
 const M2 = ['REGISTER NOW →', 'RUN FOR A CAUSE', 'PEDAL FOR THE PLANET', 'MAKE AN IMPACT', 'JOIN THE MOVEMENT', 'ACT NOW', 'BE THE CHANGE', 'GREEN IS THE NEW GOLD'];
 
 export default function HomePage() {
@@ -1379,7 +1448,6 @@ export default function HomePage() {
       <Events />
       <Marquee items={M2} dir="r" bg="bg-g950" speed="28s" />
       <Impact />
-      
       <SponsorTiers />
       <Sponsors />
       <Testimonials />
