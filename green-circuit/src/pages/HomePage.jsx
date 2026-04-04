@@ -827,7 +827,7 @@ const FT = [
   'YouTube+Instagram Page Flashmob',
   'Mention on the Stage Arch',
   '3 exclusive stage feature slots (20 minutes each)',
-  'Mention on Banners - 2K, 5K, 10K',
+  'Mention on Banners - 3K, 5K, 10K',
   'Exhibition Stall',
   'Coffee Table Book',
   'Powered by Title',
@@ -1436,7 +1436,7 @@ export function Footer() {
 }
 
 /* ═══ HOME PAGE ═══ */
-const M1 = [' MARATHON', ' CYCLOTRON', 'FUNATHON', ' ₹2L PRIZE POOL', ' BENGALURU', ' JUNE 14, 2025', ' 5000+ RUNNERS', ' GO GREEN', ' LIMITED SPOTS'];
+const M1 = [' ECOMILES', ' CYCLESTREET', 'FUNATHON', ' ₹2L PRIZE POOL', ' BENGALURU', ' JUNE 14, 2026', ' 1000+ RUNNERS', ' GO GREEN', ' LIMITED SPOTS'];
 const M2 = ['REGISTER NOW →', 'RUN FOR A CAUSE', 'PEDAL FOR THE PLANET', 'MAKE AN IMPACT', 'JOIN THE MOVEMENT', 'ACT NOW', 'BE THE CHANGE', 'GREEN IS THE NEW GOLD'];
 
 export default function HomePage() {
