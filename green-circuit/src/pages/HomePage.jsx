@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { motion, useInView, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import WhatsAppButton from '../components/WhatsAppButton';
 import {
   Menu, X, Users, Download, Trophy, CalendarDays, MapPin,
   Footprints, Bike, PartyPopper, ArrowRight, Clock, TreePine, Award,
@@ -1455,6 +1456,7 @@ export default function HomePage() {
       <PastEvents />
       <Faq />
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }

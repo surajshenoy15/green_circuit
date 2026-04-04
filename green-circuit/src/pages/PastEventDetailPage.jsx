@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
+import WhatsAppButton from '../components/WhatsAppButton';
 import {
   ArrowRight,
   ArrowLeft,
@@ -318,7 +319,6 @@ function EventCta({ event }) {
     </section>
   );
 }
-
 export default function PastEventDetailPage() {
   const { slug } = useParams();
   const event = PAST_EVENT_DATA[slug];
@@ -339,6 +339,7 @@ export default function PastEventDetailPage() {
             </Link>
           </div>
         </div>
+        <WhatsAppButton />
       </div>
     );
   }
@@ -352,6 +353,7 @@ export default function PastEventDetailPage() {
       <EventGallery event={event} />
       <EventCta event={event} />
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }
