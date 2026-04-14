@@ -312,7 +312,7 @@ const EV = [
     tag: '10K & 5K & 3K',
     I: Footprints,
     img: '/images/eco-miles-1.png',
-    d: "Push your limits on Bengaluru's greenest route through Cubbon Park.",
+    d: "Push your limits on Bengaluru's greenest route through National College Ground, Basavanagudi.",
     loc: 'National College Ground,Basavanagudi',
     cap: '8000+',
     price: '',
@@ -322,21 +322,12 @@ const EV = [
     tag: '5K Ride',
     I: Bike,
     img: '/images/cycle-street-1.png',
-    d: 'Pedal for the planet through iconic landscapes starting from Lalbagh.',
+    d: 'Pedal for the planet through iconic landscapes starting from National College Ground,Basavanagudi.',
     loc: 'National College Ground,Basavanagudi',
     cap: '3000+',
     price: '',
   },
-  {
-    t: 'Funathon',
-    tag: 'Fun Run',
-    I: PartyPopper,
-    img: '/images/funathon.png',
-    d: 'A fun-filled celebration for the whole family at Freedom Park.',
-    loc: 'National College Ground,Basavanagudi',
-    cap: '2000+',
-    price: '',
-  },
+
 ];
 
 function Events() {
@@ -347,7 +338,7 @@ function Events() {
           <Head ey="Choose Your Challenge" ti="OUR EVENTS" />
         </Fade>
 
-        <Stagger className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <Stagger className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {EV.map((e) => (
             <StaggerItem key={e.t}>
               <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white lift">
