@@ -313,21 +313,22 @@ const EV = [
     I: Footprints,
     img: '/images/eco-miles-1.png',
     d: "Push your limits on Bengaluru's greenest route through National College Ground, Basavanagudi.",
-    loc: 'National College Ground,Basavanagudi',
+    loc: 'National College Ground, Basavanagudi',
     cap: '8000+',
     price: '',
+    href: 'https://ifinish.in/running/Circuitrun_26',
   },
   {
     t: 'CycleStreet',
     tag: '5K Ride',
     I: Bike,
     img: '/images/cycle-street-1.png',
-    d: 'Pedal for the planet through iconic landscapes starting from National College Ground,Basavanagudi.',
-    loc: 'National College Ground,Basavanagudi',
+    d: 'Pedal for the planet through iconic landscapes starting from National College Ground, Basavanagudi.',
+    loc: 'National College Ground, Basavanagudi',
     cap: '3000+',
     price: '',
+    href: 'https://ifinish.in/running/Circuitrun_26',
   },
-
 ];
 
 function Events() {
@@ -354,9 +355,11 @@ function Events() {
                     <span className="text-[9px] font-bold text-g700">{e.tag}</span>
                   </div>
 
-                  <div className="absolute top-3 right-3 rounded-full bg-g600 px-2.5 py-1 text-[10px] font-bold text-white shadow-lg">
-                    {e.price}
-                  </div>
+                  {e.price && (
+                    <div className="absolute top-3 right-3 rounded-full bg-g600 px-2.5 py-1 text-[10px] font-bold text-white shadow-lg">
+                      {e.price}
+                    </div>
+                  )}
 
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent px-3 py-3">
                     <div className="flex flex-wrap gap-3 text-[9px] font-medium text-white/90">
@@ -379,11 +382,14 @@ function Events() {
                   <p className="mb-5 flex-1 text-[11px] leading-relaxed text-gray-500">
                     {e.d}
                   </p>
+
                   <a
-                    href="#"
+                    href={e.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group/b flex items-center justify-center gap-1.5 rounded-xl bg-g600 py-2.5 text-[11px] font-bold text-white shadow-md shadow-g600/15 transition-all hover:bg-g700"
                   >
-                    Register Now{' '}
+                    Register Now
                     <ArrowRight
                       size={12}
                       className="transition-transform group-hover/b:translate-x-1"
@@ -398,6 +404,8 @@ function Events() {
     </section>
   );
 }
+
+export default Events;
 
 /* ═══ IMPACT ═══ */
 function Ctr({ to, pre = '', suf = '' }) {
