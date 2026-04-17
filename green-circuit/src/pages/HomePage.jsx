@@ -406,6 +406,7 @@ function Events() {
 }
 
 
+
 /* ═══ IMPACT ═══ */
 function Ctr({ to, pre = '', suf = '' }) {
   const r = useRef(null); const v = useInView(r, { once: true }); const [n, setN] = useState(0);
@@ -835,7 +836,7 @@ const FT = [
 const TI = [
   {
     n: 'DIAMOND',
-    p: '₹2,00,000',
+    p: 'CONTACT FOR MORE INFO',
     freq: 'Premium',
     cat: 'Title Partner',
     I: Gem,
@@ -859,7 +860,7 @@ const TI = [
   },
   {
     n: 'PLATINUM',
-    p: '₹1,00,000',
+    p: 'CONTACT FOR MORE INFO',
     freq: 'Top Tier',
     cat: 'Main Sponsor',
     I: Crown,
@@ -883,7 +884,7 @@ const TI = [
   },
   {
     n: 'GOLD',
-    p: '₹75,000',
+    p: 'CONTACT FOR MORE INFO',
     freq: 'Gold Tier',
     cat: 'Event Sponsor',
     I: Trophy,
@@ -907,7 +908,7 @@ const TI = [
   },
   {
     n: 'SILVER',
-    p: '₹50,000',
+    p: 'CONTACT FOR MORE INFO',
     freq: 'Silver Tier',
     cat: 'Supporting Sponsor',
     I: Shield,
@@ -931,7 +932,7 @@ const TI = [
   },
   {
     n: 'BRONZE',
-    p: '₹25,000',
+    p: 'CONTACT FOR MORE INFO',
     freq: 'Bronze Tier',
     cat: 'Brand Partner',
     I: Star,
@@ -955,7 +956,7 @@ const TI = [
   },
   {
     n: 'ASSOCIATE',
-    p: '₹10,000',
+    p: 'CONTACT FOR MORE INFO',
     freq: 'Associate Tier',
     cat: 'Community Sponsor',
     I: Users,
@@ -1433,7 +1434,7 @@ export default function HomePage() {
       <Impact />
       <SponsorTiers />
       <Sponsors />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Marquee items={M1} bg="bg-g800" speed="18s" />
       <PastEvents />
       <Faq />
