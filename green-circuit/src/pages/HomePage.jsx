@@ -405,7 +405,6 @@ function Events() {
   );
 }
 
-export default Events;
 
 /* ═══ IMPACT ═══ */
 function Ctr({ to, pre = '', suf = '' }) {
