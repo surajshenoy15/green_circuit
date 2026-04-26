@@ -236,12 +236,13 @@ function Hero() {
             </a>
 
             <a
-              href="#"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-white/12 border border-white/20 text-white text-sm font-bold hover:bg-white/18 transition-all backdrop-blur-sm"
-            >
-              <Download size={14} className="text-white" />
-              <span>Brochure</span>
-            </a>
+  href="/brochurefinal.pdf"
+  download="Green-Circuit-Brochure.pdf"
+  className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-white/12 border border-white/20 text-white text-sm font-bold hover:bg-white/18 transition-all backdrop-blur-sm"
+>
+  <Download size={14} className="text-white" />
+  <span>Brochure</span>
+</a>
           </motion.div>
 
           {/*
