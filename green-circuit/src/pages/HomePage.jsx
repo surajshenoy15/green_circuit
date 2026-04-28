@@ -1029,105 +1029,105 @@ function SponsorTiers() {
           </div>
         </Fade>
 
-        <Stagger className="grid items-stretch gap-5 pt-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6">
-          {TI.map((t) => (
-            <StaggerItem key={t.n} className="h-full">
-              <div className="relative h-full">
-                {t.pop && (
-                  <div className="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1/2">
-                    <div className="flex items-center gap-1 rounded-full bg-g500 px-4 py-1 text-[8px] font-bold tracking-wider text-white shadow-lg shadow-g500/30">
-                      <Sparkles size={8} />
-                      MOST POPULAR
-                    </div>
-                  </div>
-                )}
+        <Stagger className="grid items-stretch gap-6 pt-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+  {TI.map((t) => (
+    <StaggerItem key={t.n} className="h-full">
+      <div className="relative h-full">
+        {t.pop && (
+          <div className="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-1/2">
+            <div className="flex items-center gap-1 rounded-full bg-g500 px-4 py-1 text-[8px] font-bold tracking-wider text-white shadow-lg shadow-g500/30">
+              <Sparkles size={8} />
+              MOST POPULAR
+            </div>
+          </div>
+        )}
 
-                <div
-                  className={`relative flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-300 ${
-                    t.pop
-                      ? 'border-g400 bg-gradient-to-b from-white to-g50 shadow-2xl shadow-g400/15'
-                      : 'border-white/10 bg-white shadow-xl hover:-translate-y-1 hover:shadow-2xl'
-                  }`}
-                >
-                  {t.pop && (
-                    <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-g400 via-g500 to-g400" />
-                  )}
+        <div
+          className={`relative flex h-full flex-col overflow-hidden rounded-2xl border transition-all duration-300 ${
+            t.pop
+              ? 'border-g400 bg-gradient-to-b from-white to-g50 shadow-2xl shadow-g400/15'
+              : 'border-white/10 bg-white shadow-xl hover:-translate-y-1 hover:shadow-2xl'
+          }`}
+        >
+          {t.pop && (
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-g400 via-g500 to-g400" />
+          )}
 
-                  <div className="flex flex-1 flex-col p-4 sm:p-5">
-                    <div className="mb-4 pt-3 text-center">
-                      <div
-                        className={`mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl ${t.bg} shadow-lg`}
-                      >
-                        <t.I className="h-5 w-5 text-white" />
-                      </div>
+          <div className="flex flex-1 flex-col p-5 sm:p-6">
+            <div className="mb-4 pt-3 text-center">
+              <div
+                className={`mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl ${t.bg} shadow-lg`}
+              >
+                <t.I className="h-5 w-5 text-white" />
+              </div>
 
-                      <h3 className="font-head text-lg tracking-wider text-gray-900 sm:text-xl">
-                        {t.n}
-                      </h3>
+              <h3 className="font-head text-xl tracking-wider text-gray-900">
+                {t.n}
+              </h3>
 
-                      <p className="font-head mt-1 text-[1.9rem] leading-none text-g700 sm:text-[2rem]">
-                        {t.p}
-                      </p>
+              <p className="font-head mt-2 text-[2rem] leading-none text-g700">
+                {t.p}
+              </p>
 
-                      <p className="mt-1.5 text-[9px] font-medium leading-snug text-gray-400">
-                        {t.freq} · {t.cat}
-                      </p>
-                    </div>
+              <p className="mt-2 text-[10px] font-medium leading-snug text-gray-400">
+                {t.freq} · {t.cat}
+              </p>
+            </div>
 
-                    <div className="mb-4 h-px w-full bg-gray-100" />
+            <div className="mb-5 h-px w-full bg-gray-100" />
 
-                    <div className="mb-5 flex-1 space-y-2.5">
-                      {FT.map((f, j) => {
-                        const value = t.f[j];
-                        const isAvailable =
-                          value === true ||
-                          typeof value === 'number' ||
-                          typeof value === 'string';
+            <div className="mb-6 flex-1 space-y-3">
+              {FT.map((f, j) => {
+                const value = t.f[j];
+                const isAvailable =
+                  value === true ||
+                  typeof value === 'number' ||
+                  typeof value === 'string';
 
-                        return (
-                          <div key={f} className="flex items-start gap-2 text-[11px] leading-snug">
-                            <div
-                              className={`mt-0.5 flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full ${
-                                isAvailable ? 'bg-g500/10' : 'bg-gray-50'
-                              }`}
-                            >
-                              {isAvailable ? (
-                                <Check size={8} className="text-g600" />
-                              ) : (
-                                <span className="text-[7px] text-gray-200">✕</span>
-                              )}
-                            </div>
-
-                            <span className={isAvailable ? 'font-medium text-gray-600' : 'text-gray-200'}>
-                              {typeof value === 'string'
-                                ? value
-                                : typeof value === 'number'
-                                ? `${value} ${f}`
-                                : f}
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    <a
-                      href={t.wa}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`mt-auto w-full rounded-xl py-2.5 text-center text-[11px] font-bold transition-all duration-300 ${
-                        t.pop
-                          ? 'breathe bg-g600 text-white shadow-lg shadow-g600/20 hover:bg-g700'
-                          : 'border-2 border-g600 text-g700 hover:bg-g600 hover:text-white hover:shadow-lg'
+                return (
+                  <div key={f} className="flex items-start gap-2.5 text-[12px] leading-snug">
+                    <div
+                      className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full ${
+                        isAvailable ? 'bg-g500/10' : 'bg-gray-50'
                       }`}
                     >
-                      Join as Sponsor <ArrowRight size={11} className="ml-1 inline" />
-                    </a>
+                      {isAvailable ? (
+                        <Check size={9} className="text-g600" />
+                      ) : (
+                        <span className="text-[8px] text-gray-200">✕</span>
+                      )}
+                    </div>
+
+                    <span className={isAvailable ? 'font-medium text-gray-600' : 'text-gray-200'}>
+                      {typeof value === 'string'
+                        ? value
+                        : typeof value === 'number'
+                        ? `${value} ${f}`
+                        : f}
+                    </span>
                   </div>
-                </div>
-              </div>
-            </StaggerItem>
-          ))}
-        </Stagger>
+                );
+              })}
+            </div>
+
+            <a
+              href={t.wa}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`mt-auto w-full rounded-xl py-3 text-center text-[12px] font-bold transition-all duration-300 ${
+                t.pop
+                  ? 'breathe bg-g600 text-white shadow-lg shadow-g600/20 hover:bg-g700'
+                  : 'border-2 border-g600 text-g700 hover:bg-g600 hover:text-white hover:shadow-lg'
+              }`}
+            >
+              Join as Sponsor <ArrowRight size={11} className="ml-1 inline" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </StaggerItem>
+  ))}
+</Stagger>
 
         <Fade d={0.3}>
           <div className="mt-12 text-center">
