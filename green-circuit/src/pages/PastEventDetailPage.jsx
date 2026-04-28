@@ -25,7 +25,7 @@ const PAST_EVENT_DATA = {
     prizes: '₹1.5L+',
     location: 'Bengaluru, Karnataka',
     desc: 'Over 1,200 cyclists took to the streets of Bengaluru in our flagship Cycle Street edition, raising awareness for urban mobility, clean air, and sustainable living.',
-    video: '/videos/gc-hero.mp4',
+    video: '/videos/cy.mp4',
     heroImage: '/images/cycle-street.png',
     gallery: [
       '/images/C1.JPG',
@@ -61,7 +61,7 @@ const PAST_EVENT_DATA = {
     prizes: '₹1.5L+',
     location: 'Bengaluru, Karnataka',
     desc: 'Runners crossed the finish line for the planet in Eco Miles, where thousands of participants joined together to celebrate health, endurance, and environmental awareness.',
-    video: '/videos/gc-hero.mp4',
+    video: '/videos/ec.mp4',
     heroImage: '/images/eco-miles.png',
     gallery: [
       '/images/M1.JPG',

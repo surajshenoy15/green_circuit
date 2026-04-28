@@ -5,9 +5,10 @@ import {
   Menu, X, Users, Download, Trophy, CalendarDays, MapPin,
   Footprints, Bike, PartyPopper, ArrowRight, Clock, TreePine, Award,
   Star, Quote, Check, Medal, Crown, Gem, Shield, ChevronDown, Mail, Phone,
-  ArrowUp, Zap, Timer, Flame, Heart, Sparkles, ImageIcon
+  ArrowUp, Zap, Timer, Flame, Heart, Sparkles, ImageIcon, ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { W, Stagger, StaggerItem, Fade, Head } from '../components/shared';
+import { EventHighlights } from '../components/EventHighlights';
 
 /* ═══ MARQUEES ═══ */
 function Marquee({ items, dir = 'l', bg = 'bg-g700', speed = '25s' }) {
@@ -1431,9 +1432,11 @@ export default function HomePage() {
       <Hero />
       <Marquee items={M1} bg="bg-g700" speed="22s" />
       <Events />
+      <EventHighlights />
       <Marquee items={M2} dir="r" bg="bg-g950" speed="28s" />
       <Impact />
       <SponsorTiers />
+      
       <Sponsors />
       {/* <Testimonials /> */}
       <Marquee items={M1} bg="bg-g800" speed="18s" />
