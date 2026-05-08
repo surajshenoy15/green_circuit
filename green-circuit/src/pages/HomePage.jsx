@@ -318,7 +318,7 @@ const EV = [
     loc: 'National College Ground, Basavanagudi',
     cap: '8000+',
     price: '',
-    href: 'https://ifinish.in/running/Circuitrun_26',
+    href: 'https://gc-reg.vercel.app',
   },
   {
     t: 'CycleStreet',
@@ -329,7 +329,7 @@ const EV = [
     loc: 'National College Ground, Basavanagudi',
     cap: '3000+',
     price: '',
-    href: 'https://ifinish.in/running/Circuitrun_26',
+    href: 'https://gc-reg.vercel.app',
   },
 ];
 
