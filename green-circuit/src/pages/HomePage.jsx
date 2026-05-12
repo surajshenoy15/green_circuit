@@ -5,7 +5,8 @@ import {
   Menu, X, Users, Download, Trophy, CalendarDays, MapPin,
   Footprints, Bike, PartyPopper, ArrowRight, Clock, TreePine, Award,
   Star, Quote, Check, Medal, Crown, Gem, Shield, ChevronDown, Mail, Phone,
-  ArrowUp, Zap, Timer, Flame, Heart, Sparkles, ImageIcon, ChevronLeft, ChevronRight
+  ArrowUp, Zap, Timer, Flame, Heart, Sparkles, ImageIcon, ChevronLeft, ChevronRight,
+  Route, Navigation
 } from 'lucide-react';
 import { W, Stagger, StaggerItem, Fade, Head } from '../components/shared';
 import { EventHighlights } from '../components/EventHighlights';
@@ -25,7 +26,7 @@ function Marquee({ items, dir = 'l', bg = 'bg-g700', speed = '25s' }) {
 }
 
 /* ═══ NAVBAR ═══ */
-const NAV = [['Events', '#events'], ['Impact', '#impact'], ['Sponsors', '#sponsors'], ['Past Events', '#past-events'], ['FAQ', '#faq']];
+const NAV = [['Events', '#events'], ['Route', '#route-map'], ['Impact', '#impact'], ['Sponsors', '#sponsors'], ['Past Events', '#past-events'], ['FAQ', '#faq']];
 
 export function Navbar() {
   const [s, setS] = useState(false);
@@ -408,30 +409,206 @@ function Events() {
 }
 
 
+/* ═══ ROUTE MAP ═══ */
+function RouteMap() {
+  const videoRef = useRef(null);
+
+  // Ensure loop continues even if the browser pauses it (e.g. tab switch).
+  // Only honors a *user-initiated* pause — programmatic stops auto-resume.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    const handleEnded = () => {
+      v.currentTime = 0;
+      v.play().catch(() => {});
+    };
+
+    v.addEventListener('ended', handleEnded);
+    return () => v.removeEventListener('ended', handleEnded);
+  }, []);
+
+  return (
+    <section id="route-map" className="relative overflow-hidden bg-g950 py-16 sm:py-24 noise">
+      {/* Ambient glow accents matching the theme */}
+      <div className="absolute top-1/4 left-[8%] w-56 h-56 rounded-full bg-g500/8 blur-[100px] glow-pulse" />
+      <div
+        className="absolute bottom-1/4 right-[10%] w-64 h-64 rounded-full bg-g400/8 blur-[110px] glow-pulse"
+        style={{ animationDelay: '1.5s' }}
+      />
+
+      {/* Subtle grid backdrop */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(74,222,128,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.03) 1px,transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
+
+      <div className={`${W} relative z-10`}>
+        <Fade>
+          <Head ey="Know Your Path" ti="ROUTE MAP" dark />
+        </Fade>
+
+        <Fade d={0.1}>
+          <div className="mx-auto mt-10 max-w-5xl">
+            <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl shadow-g500/10">
+              {/* Corner accents */}
+              <div className="pointer-events-none absolute top-3 left-3 z-20 h-8 w-8 border-t border-l border-g400/40 rounded-tl-lg" />
+              <div className="pointer-events-none absolute top-3 right-3 z-20 h-8 w-8 border-t border-r border-g400/40 rounded-tr-lg" />
+              <div className="pointer-events-none absolute bottom-3 left-3 z-20 h-8 w-8 border-b border-l border-g400/40 rounded-bl-lg" />
+              <div className="pointer-events-none absolute bottom-3 right-3 z-20 h-8 w-8 border-b border-r border-g400/40 rounded-br-lg" />
+
+              {/* LIVE-style badge */}
+              <div className="pointer-events-none absolute top-4 left-1/2 z-20 -translate-x-1/2">
+                <div className="flex items-center gap-1.5 rounded-full bg-black/50 px-3 py-1 backdrop-blur-sm border border-white/10">
+                  <span
+                    className="h-1.5 w-1.5 rounded-full bg-g400"
+                    style={{ animation: 'pulse-dot 1.5s infinite' }}
+                  />
+                  <span className="text-[9px] font-bold tracking-[0.2em] text-white/80">
+                    OFFICIAL ROUTE
+                  </span>
+                </div>
+              </div>
+
+              <video
+                ref={videoRef}
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                controlsList="nodownload"
+                preload="auto"
+                className="aspect-video w-full bg-black"
+              >
+                <source src="/videos/route-map.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            {/* Info chips below the video */}
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-2.5 backdrop-blur-sm">
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-g400/15">
+                  <MapPin size={12} className="text-g400" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[8px] font-bold uppercase tracking-wider text-white/40">Start &amp; Finish</p>
+                  <p className="text-[11px] font-bold leading-none text-white">National College Ground</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-2.5 backdrop-blur-sm">
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-g400/15">
+                  <Route size={12} className="text-g400" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[8px] font-bold uppercase tracking-wider text-white/40">Distances</p>
+                  <p className="text-[11px] font-bold leading-none text-white">3K · 5K · 10K</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-2.5 backdrop-blur-sm">
+                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-g400/15">
+                  <Navigation size={12} className="text-g400" />
+                </div>
+                <div className="text-left">
+                  <p className="text-[8px] font-bold uppercase tracking-wider text-white/40">Terrain</p>
+                  <p className="text-[11px] font-bold leading-none text-white">Scenic Bengaluru</p>
+                </div>
+              </div>
+            </div>
+
+            <p className="mx-auto mt-6 max-w-xl text-center text-[11px] leading-relaxed text-white/45">
+              Get a complete preview of the Green Circuit course — every turn, checkpoint, and finish-line moment, all in one immersive flythrough.
+            </p>
+          </div>
+        </Fade>
+      </div>
+    </section>
+  );
+}
+
 
 /* ═══ IMPACT ═══ */
+/* ═══ IMPACT ═══ */
 function Ctr({ to, pre = '', suf = '' }) {
-  const r = useRef(null); const v = useInView(r, { once: true }); const [n, setN] = useState(0);
-  useEffect(() => { if (!v) return; let c = 0; const s = Math.max(1, Math.floor(to / 80)); const id = setInterval(() => { c += s; if (c >= to) { setN(to); clearInterval(id); } else setN(c); }, 16); return () => clearInterval(id); }, [v, to]);
-  return <span ref={r} className="font-head text-4xl sm:text-5xl text-g400 tabular-nums" style={{ textShadow: '0 0 20px rgba(74,222,128,.2)' }}>{pre}{n.toLocaleString()}{suf}</span>;
+  const r = useRef(null);
+  const v = useInView(r, { once: true });
+  const [n, setN] = useState(0);
+  useEffect(() => {
+    if (!v) return;
+    let c = 0;
+    const s = Math.max(1, Math.floor(to / 80));
+    const id = setInterval(() => {
+      c += s;
+      if (c >= to) { setN(to); clearInterval(id); }
+      else setN(c);
+    }, 16);
+    return () => clearInterval(id);
+  }, [v, to]);
+  return (
+    <span
+      ref={r}
+      className="font-head text-4xl sm:text-5xl text-g700 tabular-nums"
+    >
+      {pre}{n.toLocaleString()}{suf}
+    </span>
+  );
 }
-const ST = [{ I: Users, v: 10000, s: '+', l: 'Participants' }, { I: TreePine, v: 5000, s: '+', l: 'Trees Planted' }, { I: Bike, v: 50, s: '+', l: 'Events' }, { I: Award, v: 2, s: 'L', p: '₹', l: 'Prizes' }];
+
+const ST = [
+  { I: Users, v: 10000, s: '+', l: 'Participants' },
+  { I: TreePine, v: 5000, s: '+', l: 'Trees Planted' },
+  { I: Bike, v: 50, s: '+', l: 'Events' },
+  { I: Award, v: 2, s: 'L', p: '₹', l: 'Prizes' },
+];
 
 function Impact() {
   return (
-    <section id="impact" className="bg-g950 py-16 sm:py-20 relative overflow-hidden noise">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-g600/10 rounded-full blur-[100px]" />
+    <section id="impact" className="relative overflow-hidden bg-g50/40 py-16 sm:py-20">
+      {/* Soft green ambient blobs */}
+      <div className="pointer-events-none absolute -top-20 left-[10%] h-64 w-64 rounded-full bg-g400/15 blur-[100px]" />
+      <div className="pointer-events-none absolute -bottom-20 right-[8%] h-72 w-72 rounded-full bg-g500/10 blur-[110px]" />
+
+      {/* Subtle grid backdrop */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.4]"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(74,222,128,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.08) 1px,transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
+
       <div className={`${W} relative z-10`}>
-        <Fade><Head ey="Making a Difference" ti="OUR IMPACT" dark /></Fade>
+        <Fade>
+          <Head ey="Making a Difference" ti="OUR IMPACT" />
+        </Fade>
+
         <Stagger className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {ST.map((s) => (
             <StaggerItem key={s.l}>
-              <div className="glass rounded-2xl p-6 text-center hover:bg-white/[0.08] transition-all duration-300 group">
-                <div className="w-10 h-10 rounded-xl bg-g400/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                  <s.I className="w-5 h-5 text-g400" />
+              <div className="group relative overflow-hidden rounded-2xl border border-g200/60 bg-gradient-to-br from-white via-white to-g50 p-6 text-center shadow-sm shadow-g500/5 transition-all duration-300 hover:-translate-y-1 hover:border-g400/50 hover:shadow-lg hover:shadow-g500/15">
+                {/* Top gradient accent — always visible, brighter on hover */}
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-g400 via-g500 to-g400 opacity-60 transition-opacity duration-300 group-hover:opacity-100" />
+
+                {/* Decorative corner glow */}
+                <div className="pointer-events-none absolute -top-8 -right-8 h-20 w-20 rounded-full bg-g400/10 blur-2xl transition-opacity duration-300 group-hover:bg-g400/25" />
+
+                <div className="relative mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-g100 to-g200/70 shadow-inner shadow-white transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                  <s.I className="h-6 w-6 text-g700" strokeWidth={2.2} />
                 </div>
+
                 <Ctr to={s.v} pre={s.p || ''} suf={s.s} />
-                <p className="text-white/30 text-[10px] mt-1.5 font-medium">{s.l}</p>
+
+                <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-wider text-g700/70">
+                  {s.l}
+                </p>
               </div>
             </StaggerItem>
           ))}
@@ -1433,8 +1610,10 @@ export default function HomePage() {
       <Marquee items={M1} bg="bg-g700" speed="22s" />
       <Events />
       <EventHighlights />
-      <Marquee items={M2} dir="r" bg="bg-g950" speed="28s" />
+       <Marquee items={M2} dir="r" bg="bg-g950" speed="28s" />
       <Impact />
+      <RouteMap />
+     
       <SponsorTiers />
       
       <Sponsors />
