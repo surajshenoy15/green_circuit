@@ -1325,10 +1325,10 @@ function SponsorTiers() {
 /* ═══ FAQ ═══ */
 const QA = [
   { q: 'What is Green Circuit?', a: 'Bengaluru\'s biggest eco-sports event — marathon, cycling, and fun run combined for a greener future. Over 5000+ participants expected.' },
-  { q: 'When & where is the event?', a: 'June 1st, 2025 at Bengaluru, India. Specific venue details for each event will be shared upon registration.' },
+  { q: 'When & where is the event?', a: 'June 14th @ national college grounds basavangudi' },
   { q: 'How do I register?', a: 'Hit "Register Now" on any event card above. You\'ll be redirected to our ticketing partner once the link is live.' },
   { q: 'What are the age requirements?', a: 'Marathon 10K: 16+, Marathon 5K: 12+, Cyclotron: 18+, Funathon: All ages welcome (under 12 with an adult).' },
-  { q: 'Is there a refund policy?', a: 'Transfers allowed up to 7 days before the event. Refunds available up to 14 days before with a 15% processing fee.' },
+  { q: 'Is there a refund policy?', a: 'Refund Policy will update soon' },
   { q: 'What\'s included with registration?', a: 'Race bib, event t-shirt, finisher medal, refreshments on route, certificate of participation, and post-event celebration access.' },
 ];
 
