@@ -319,7 +319,7 @@ const EV = [
     loc: 'National College Ground, Basavanagudi',
     cap: '8000+',
     price: '',
-    href: 'https://gc-reg.vercel.app',
+    href: 'https://register.greencircuit.in',
   },
   {
     t: 'CycleStreet',
@@ -330,7 +330,7 @@ const EV = [
     loc: 'National College Ground, Basavanagudi',
     cap: '3000+',
     price: '',
-    href: 'https://gc-reg.vercel.app',
+    href: 'https://register.greencircuit.in',
   },
 ];
 
