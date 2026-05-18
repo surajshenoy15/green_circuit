@@ -144,7 +144,7 @@ function Dig({ v, l }) {
 }
 
 function Hero() {
-  const cd = useCD('2026-06-01T06:00:00+05:30');
+  const cd = useCD('2026-06-14T06:00:00+05:30');
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 0.35], [0, 120]);
   const opacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
