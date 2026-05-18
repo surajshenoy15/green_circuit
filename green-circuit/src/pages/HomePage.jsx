@@ -144,7 +144,7 @@ function Dig({ v, l }) {
 }
 
 function Hero() {
-  // const cd = useCD('2026-06-01T06:00:00+05:30');
+  const cd = useCD('2026-06-01T06:00:00+05:30');
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 0.35], [0, 120]);
   const opacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
@@ -247,7 +247,7 @@ function Hero() {
 </a>
           </motion.div>
 
-          {/*
+          {
           <motion.div {...d(0.6)}>
             <div className="flex items-center justify-center gap-1.5 mb-4">
               <Timer size={11} className="text-g400/70" />
@@ -262,7 +262,7 @@ function Hero() {
               <Dig v={cd.s} l="Secs" />
             </div>
           </motion.div>
-          */}
+          }
 
           <motion.div
             {...d(0.75)}
