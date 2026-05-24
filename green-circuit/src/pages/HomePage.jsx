@@ -287,18 +287,18 @@ function Hero() {
 
           <motion.div
             {...d(0.85)}
-            className="flex flex-wrap justify-center gap-6 mt-6 text-[10px] text-white/80 font-medium"
+            className="flex flex-wrap justify-center gap-6 mt-6 text-[14px] text-white/80 font-medium"
           >
             <span className="flex items-center gap-1.5">
-              <CalendarDays size={10} className="text-g400" />
+              <CalendarDays size={12} className="text-g400" />
               June 14, 2026
             </span>
             <span className="flex items-center gap-1.5">
-              <MapPin size={10} className="text-g400" />
+              <MapPin size={12} className="text-g400" />
               National College Ground,Basavanagudi
             </span>
             <span className="flex items-center gap-1.5">
-              <Users size={10} className="text-g400" />
+              <Users size={12} className="text-g400" />
               10000+ Runners
             </span>
           </motion.div>
