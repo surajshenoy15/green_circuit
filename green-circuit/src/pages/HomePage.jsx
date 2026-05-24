@@ -229,33 +229,35 @@ function Hero() {
           </motion.p>
 
           {/* Registration Closing Highlight */}
-          <motion.div
-            {...d(0.46)}
-            className="relative mx-auto mb-8 w-fit max-w-full"
-          >
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-g400/30 via-yellow-400/25 to-g500/30 blur-lg opacity-80" />
+          {/* Registration Closing Highlight */}
+<motion.div
+  {...d(0.46)}
+  className="relative mx-auto mb-8 w-fit max-w-full"
+>
+  <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-g400/30 via-yellow-400/25 to-g500/30 blur-lg opacity-80" />
 
-            <div className="relative flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 px-5 py-3 rounded-2xl bg-black/35 border border-g400/25 shadow-lg shadow-g500/10 backdrop-blur-md">
-              <div className="flex items-center gap-2">
-                <span
-                  className="w-2 h-2 rounded-full bg-yellow-400"
-                  style={{ animation: 'pulse-dot 1.4s infinite' }}
-                />
-                <span className="text-[9px] sm:text-[10px] text-yellow-300 font-extrabold uppercase tracking-[0.25em]">
-                  Hurry Up
-                </span>
-              </div>
+  <div className="relative flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 px-5 py-3 rounded-2xl bg-black/35 border border-g400/25 shadow-lg shadow-g500/10 backdrop-blur-md">
+    <div className="flex items-center gap-2">
+      <span
+        className="w-2 h-2 rounded-full bg-yellow-400"
+        style={{ animation: 'pulse-dot 1.4s infinite' }}
+      />
+      <span className="text-[9px] sm:text-[10px] text-yellow-300 font-extrabold uppercase tracking-[0.25em]">
+        Limited Time
+      </span>
+    </div>
 
-              <div className="hidden sm:block h-4 w-px bg-white/15" />
+    <div className="hidden sm:block h-4 w-px bg-white/15" />
 
-              <p className="text-xs sm:text-sm text-white/90 font-semibold">
-                Registration closes on{" "}
-                <span className="text-g400 font-extrabold">
-                  June 3rd, 2026
-                </span>
-              </p>
-            </div>
-          </motion.div>
+    <p className="text-xs sm:text-sm text-white/90 font-semibold">
+      <span className="text-g400 font-extrabold">5K &amp; 10K Marathon</span>{" "}
+      registrations close on{" "}
+      <span className="text-yellow-300 font-extrabold">
+        June 3rd, 2026
+      </span>
+    </p>
+  </div>
+</motion.div>
 
           <motion.div {...d(0.55)} className="flex flex-wrap justify-center gap-3 mb-10">
             <a
