@@ -223,12 +223,41 @@ function Hero() {
 
           <motion.p
             {...d(0.4)}
-            className="text-white/85 text-sm sm:text-base max-w-2xl mx-auto mb-8 leading-relaxed"
+            className="text-white/85 text-sm sm:text-base max-w-2xl mx-auto mb-5 leading-relaxed"
           >
             Bengaluru&apos;s biggest eco-sports event. Run, ride, and make an impact for a greener future.
           </motion.p>
 
-          <motion.div {...d(0.5)} className="flex flex-wrap justify-center gap-3 mb-10">
+          {/* Registration Closing Highlight */}
+          <motion.div
+            {...d(0.46)}
+            className="relative mx-auto mb-8 w-fit max-w-full"
+          >
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-g400/30 via-yellow-400/25 to-g500/30 blur-lg opacity-80" />
+
+            <div className="relative flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 px-5 py-3 rounded-2xl bg-black/35 border border-g400/25 shadow-lg shadow-g500/10 backdrop-blur-md">
+              <div className="flex items-center gap-2">
+                <span
+                  className="w-2 h-2 rounded-full bg-yellow-400"
+                  style={{ animation: 'pulse-dot 1.4s infinite' }}
+                />
+                <span className="text-[9px] sm:text-[10px] text-yellow-300 font-extrabold uppercase tracking-[0.25em]">
+                  Hurry Up
+                </span>
+              </div>
+
+              <div className="hidden sm:block h-4 w-px bg-white/15" />
+
+              <p className="text-xs sm:text-sm text-white/90 font-semibold">
+                Registration closes on{" "}
+                <span className="text-g400 font-extrabold">
+                  June 3rd, 2026
+                </span>
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div {...d(0.55)} className="flex flex-wrap justify-center gap-3 mb-10">
             <a
               href="#events"
               className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-g500 text-white text-sm font-bold hover:bg-g600 transition-all shadow-lg shadow-g500/25"
@@ -238,23 +267,23 @@ function Hero() {
             </a>
 
             <a
-  href="/brochurefinal.pdf"
-  download="Green-Circuit-Brochure.pdf"
-  className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-white/12 border border-white/20 text-white text-sm font-bold hover:bg-white/18 transition-all backdrop-blur-sm"
->
-  <Download size={14} className="text-white" />
-  <span>Brochure</span>
-</a>
+              href="/brochurefinal.pdf"
+              download="Green-Circuit-Brochure.pdf"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-white/12 border border-white/20 text-white text-sm font-bold hover:bg-white/18 transition-all backdrop-blur-sm"
+            >
+              <Download size={14} className="text-white" />
+              <span>Brochure</span>
+            </a>
           </motion.div>
 
-          {
-          <motion.div {...d(0.6)}>
+          <motion.div {...d(0.65)}>
             <div className="flex items-center justify-center gap-1.5 mb-4">
               <Timer size={11} className="text-g400/70" />
               <p className="text-[8px] text-white/90 uppercase tracking-[0.3em] font-bold">
                 Countdown to race day
               </p>
             </div>
+
             <div className="flex justify-center gap-2.5 sm:gap-3 mb-10">
               <Dig v={cd.d} l="Days" />
               <Dig v={cd.h} l="Hours" />
@@ -262,7 +291,6 @@ function Hero() {
               <Dig v={cd.s} l="Secs" />
             </div>
           </motion.div>
-          }
 
           <motion.div
             {...d(0.75)}
@@ -293,10 +321,12 @@ function Hero() {
               <CalendarDays size={12} className="text-g400" />
               June 14, 2026
             </span>
+
             <span className="flex items-center gap-1.5">
               <MapPin size={12} className="text-g400" />
-              National College Ground,Basavanagudi
+              National College Ground, Basavanagudi
             </span>
+
             <span className="flex items-center gap-1.5">
               <Users size={12} className="text-g400" />
               10000+ Runners
@@ -307,7 +337,6 @@ function Hero() {
     </section>
   );
 }
-
 /* ═══ EVENTS ═══ */
 const EV = [
   {
