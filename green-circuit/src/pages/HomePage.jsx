@@ -26,7 +26,15 @@ function Marquee({ items, dir = 'l', bg = 'bg-g700', speed = '25s' }) {
 }
 
 /* ═══ NAVBAR ═══ */
-const NAV = [['Events', '#events'], ['Route', '#route-map'], ['Impact', '#impact'], ['Sponsors', '#sponsors'], ['Past Events', '#past-events'], ['FAQ', '#faq']];
+const NAV = [
+  ['Events', '#events'],
+  ['Prizes', '#prizes'],
+  ['Route', '#route-map'],
+  ['Impact', '#impact'],
+  ['Sponsors', '#sponsors'],
+  ['Past Events', '#past-events'],
+  ['FAQ', '#faq'],
+];
 
 export function Navbar() {
   const [s, setS] = useState(false);
@@ -438,8 +446,219 @@ function Events() {
     </section>
   );
 }
+/* ═══ PRIZE DETAILS ═══ */
+const PRIZE_CATEGORIES = [
+  {
+    title: '5K Marathon',
+    tag: 'Speed · Endurance · Energy',
+    pool: '₹22,500',
+    icon: Footprints,
+    prizes: [
+      {
+        rank: 'Winner',
+        place: '1st Place',
+        male: '₹6,000',
+        female: '₹6,000',
+        icon: Crown,
+      },
+      {
+        rank: '1st Runner Up',
+        place: '2nd Place',
+        male: '₹3,000',
+        female: '₹3,000',
+        icon: Medal,
+      },
+      {
+        rank: '2nd Runner Up',
+        place: '3rd Place',
+        male: '₹1,500',
+        female: '₹1,500',
+        icon: Award,
+      },
+    ],
+  },
+  {
+    title: '10K Marathon',
+    tag: 'Challenge · Strength · Champions',
+    pool: '₹22,500',
+    icon: Route,
+    prizes: [
+      {
+        rank: 'Winner',
+        place: '1st Place',
+        male: '₹6,000',
+        female: '₹6,000',
+        icon: Crown,
+      },
+      {
+        rank: '1st Runner Up',
+        place: '2nd Place',
+        male: '₹3,000',
+        female: '₹3,000',
+        icon: Medal,
+      },
+      {
+        rank: '2nd Runner Up',
+        place: '3rd Place',
+        male: '₹1,500',
+        female: '₹1,500',
+        icon: Award,
+      },
+    ],
+  },
+];
 
+function PrizeDetails() {
+  return (
+    <section id="prizes" className="relative overflow-hidden bg-g50/50 py-16 sm:py-24">
+      <div className="pointer-events-none absolute -top-24 left-[8%] h-72 w-72 rounded-full bg-g400/15 blur-[110px]" />
+      <div className="pointer-events-none absolute -bottom-24 right-[8%] h-72 w-72 rounded-full bg-g500/10 blur-[110px]" />
 
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.45]"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(74,222,128,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,.08) 1px,transparent 1px)',
+          backgroundSize: '48px 48px',
+        }}
+      />
+
+      <div className={`${W} relative z-10`}>
+        <Fade>
+          <Head ey="Rewarding Champions" ti="PRIZE DETAILS" />
+        </Fade>
+
+        <Fade d={0.08}>
+          <p className="mx-auto mb-10 max-w-2xl text-center text-sm leading-relaxed text-gray-500">
+            Cash prizes are awarded separately for both{' '}
+            <span className="font-bold text-g700">5K</span> and{' '}
+            <span className="font-bold text-g700">10K Marathon</span>{' '}
+            categories, recognizing top male and female performers.
+          </p>
+        </Fade>
+
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-2">
+          {PRIZE_CATEGORIES.map((cat, index) => (
+            <Fade key={cat.title} d={0.12 + index * 0.08}>
+              <div className="group relative h-full overflow-hidden rounded-3xl border border-g200/70 bg-white shadow-xl shadow-g500/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-g500/10">
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-g400 via-g600 to-g400" />
+
+                <div className="relative overflow-hidden bg-gradient-to-br from-g900 via-g800 to-g950 p-6 text-white">
+                  <div className="absolute -right-10 -top-10 h-36 w-36 rounded-full bg-g400/10 blur-2xl" />
+                  <div className="absolute -bottom-12 left-8 h-32 w-32 rounded-full bg-g500/10 blur-2xl" />
+
+                  <div className="relative z-10 flex items-start justify-between gap-4">
+                    <div>
+                      <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-g400/20 bg-white/5 px-3 py-1">
+                        <Sparkles size={10} className="text-g400" />
+                        <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-g400">
+                          Prize Category
+                        </span>
+                      </div>
+
+                      <h3 className="font-head text-3xl tracking-wide text-white">
+                        {cat.title}
+                      </h3>
+
+                      <p className="mt-1 text-[11px] font-medium text-white/45">
+                        {cat.tag}
+                      </p>
+                    </div>
+
+                    <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-g400/15 ring-1 ring-g400/20">
+                      <cat.icon className="h-7 w-7 text-g400" />
+                    </div>
+                  </div>
+
+                  <div className="relative z-10 mt-6 rounded-2xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur-sm">
+                    <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-white/35">
+                      Estimated Prize Pool
+                    </p>
+                    <p className="mt-1 font-head text-4xl leading-none text-g400">
+                      {cat.pool}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-5 sm:p-6">
+                  <div className="space-y-4">
+                    {cat.prizes.map((p, i) => (
+                      <motion.div
+                        key={p.rank}
+                        initial={{ opacity: 0, y: 14 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.08, duration: 0.4 }}
+                        className="rounded-2xl border border-g100 bg-gradient-to-br from-white to-g50/50 p-4 transition-all duration-300 hover:border-g300 hover:bg-g50"
+                      >
+                        <div className="mb-4 flex items-center gap-3">
+                          <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl bg-g100 shadow-inner">
+                            <p.icon className="h-5 w-5 text-g700" />
+                          </div>
+
+                          <div>
+                            <h4 className="text-sm font-extrabold leading-tight text-gray-900">
+                              {p.rank}
+                            </h4>
+                            <p className="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                              {p.place}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="rounded-xl border border-g100 bg-white px-4 py-3">
+                            <p className="text-[8px] font-bold uppercase tracking-[0.2em] text-gray-400">
+                              Male
+                            </p>
+                            <p className="mt-1 font-head text-2xl leading-none text-g700">
+                              {p.male}
+                            </p>
+                          </div>
+
+                          <div className="rounded-xl border border-g100 bg-white px-4 py-3">
+                            <p className="text-[8px] font-bold uppercase tracking-[0.2em] text-gray-400">
+                              Female
+                            </p>
+                            <p className="mt-1 font-head text-2xl leading-none text-g700">
+                              {p.female}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  <div className="mt-5 rounded-2xl bg-g950 p-4">
+                    <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.25em] text-g400">
+                      Prize Notes
+                    </p>
+
+                    <div className="space-y-3">
+                      {[
+                        'Overall prizes for fastest male and female runners.',
+                        'Category-wise prizes may include trophies, medals, or ₹500–₹1000 cash rewards.',
+                      ].map((note) => (
+                        <div key={note} className="flex gap-2.5">
+                          <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-g400/15">
+                            <Check size={10} className="text-g400" />
+                          </div>
+                          <p className="text-[11px] leading-relaxed text-white/55">
+                            {note}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Fade>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 /* ═══ ROUTE MAP ═══ */
 function RouteMap() {
   const videoRef = useRef(null);
@@ -1641,6 +1860,7 @@ export default function HomePage() {
       <Marquee items={M1} bg="bg-g700" speed="22s" />
       <Events />
       <EventHighlights />
+      <PrizeDetails />
        <Marquee items={M2} dir="r" bg="bg-g950" speed="28s" />
       <Impact />
       <RouteMap />
