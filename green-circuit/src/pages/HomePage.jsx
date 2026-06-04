@@ -25,6 +25,15 @@ function Marquee({ items, dir = 'l', bg = 'bg-g700', speed = '25s' }) {
   );
 }
 
+function trackRegisterClick(source = 'Register Button') {
+  if (window.fbq) {
+    window.fbq('track', 'Lead', {
+      content_name: source,
+      content_category: 'Green Circuit Registration',
+    });
+  }
+}
+
 /* ═══ NAVBAR ═══ */
 const NAV = [
   ['Events', '#events'],
@@ -261,7 +270,7 @@ function Hero() {
       <span className="text-g400 font-extrabold">5K &amp; 10K Marathon</span>{" "}
       registrations close on{" "}
       <span className="text-yellow-300 font-extrabold">
-        June 3rd, 2026
+        June 7th, 2026
       </span>
     </p>
   </div>
@@ -269,12 +278,13 @@ function Hero() {
 
           <motion.div {...d(0.55)} className="flex flex-wrap justify-center gap-3 mb-10">
             <a
-              href="#events"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-g500 text-white text-sm font-bold hover:bg-g600 transition-all shadow-lg shadow-g500/25"
-            >
-              <Flame size={14} className="text-white" />
-              <span>Register Now</span>
-            </a>
+  href="#events"
+  onClick={() => trackRegisterClick('Hero Register Now')}
+  className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg bg-g500 text-white text-sm font-bold hover:bg-g600 transition-all shadow-lg shadow-g500/25"
+>
+  <Flame size={14} className="text-white" />
+  <span>Register Now</span>
+</a>
 
             <a
               href="/brochurefinal.pdf"
@@ -426,17 +436,18 @@ function Events() {
                   </p>
 
                   <a
-                    href={e.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/b flex items-center justify-center gap-1.5 rounded-xl bg-g600 py-2.5 text-[11px] font-bold text-white shadow-md shadow-g600/15 transition-all hover:bg-g700"
-                  >
-                    Register Now
-                    <ArrowRight
-                      size={12}
-                      className="transition-transform group-hover/b:translate-x-1"
-                    />
-                  </a>
+  href={e.href}
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={() => trackRegisterClick(`${e.t} Register Now`)}
+  className="group/b flex items-center justify-center gap-1.5 rounded-xl bg-g600 py-2.5 text-[11px] font-bold text-white shadow-md shadow-g600/15 transition-all hover:bg-g700"
+>
+  Register Now
+  <ArrowRight
+    size={12}
+    className="transition-transform group-hover/b:translate-x-1"
+  />
+</a>
                 </div>
               </div>
             </StaggerItem>
@@ -1237,9 +1248,13 @@ function CtaBanner() {
           </div>
           <h2 className="font-head text-4xl sm:text-5xl text-white mb-2 tracking-wide">READY TO RUN?</h2>
           <p className="text-white/80 text-xs mb-6">Join 5000+ runners. Limited spots available.</p>
-          <a href="#events" className="inline-flex items-center gap-1.5 px-7 py-3 rounded-xl bg-white text-g800 text-xs font-bold hover:bg-g100 transition shadow-xl breathe">
-            <Footprints size={14} /> Register Now <ArrowRight size={12} />
-          </a>
+          <a
+  href="#events"
+  onClick={() => trackRegisterClick('CTA Banner Register Now')}
+  className="inline-flex items-center gap-1.5 px-7 py-3 rounded-xl bg-white text-g800 text-xs font-bold hover:bg-g100 transition shadow-xl breathe"
+>
+  <Footprints size={14} /> Register Now <ArrowRight size={12} />
+</a>
         </Fade>
       </div>
     </section>
