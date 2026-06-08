@@ -268,7 +268,7 @@ function Hero() {
 
     <p className="text-xs sm:text-sm text-white/90 font-semibold">
       <span className="text-g400 font-extrabold">5K &amp; 10K Marathon</span>{" "}
-      registrations close on{" "}
+      registrations closed on{" "}
       <span className="text-yellow-300 font-extrabold">
         June 7th, 2026
       </span>
