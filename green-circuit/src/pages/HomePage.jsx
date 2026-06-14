@@ -184,7 +184,7 @@ function Hero() {
           className="w-full h-full object-cover opacity-20"
           poster="/images/GC.png"
         >
-          <source src="/videos/gc-hero.mp4" type="video/mp4" />
+          <source src="#" type="video/mp4" />
         </video>
       </motion.div>
 
